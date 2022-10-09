@@ -1,7 +1,20 @@
+.sidebar-user {
+    width: 200px;
+}
+
 .user-name {
     display: flex;
     align-items: center;
     margin-bottom: 24px;
+
+    &:after {
+        content: '';
+        border-bottom: 1px solid rgba(22, 24, 35, 0.12);
+        position: absolute;
+        right: 1215px;
+        left: 175px;
+        top: 150px;
+    }
 }
 
 .user-avt {

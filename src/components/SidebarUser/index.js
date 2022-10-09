@@ -8,14 +8,21 @@ import styles from './SidebarUser.module.scss';
 
 const cx = classNames.bind(styles);
 
-function SidebarUser({ data }) {
+const USER_INFO = {
+    avt: 'https://avatars.githubusercontent.com/u/100254753?v=4',
+    username: 'lenghia1007',
+};
+
+function SidebarUser() {
     return (
-        <>
+        <div className={cx('sidebar-user')}>
             <div className={cx('user-name')}>
-                <img className={cx('user-avt')} src={data.avt} />
-                <div className={cx('name-title')}>{data.username}</div>
+                <Link to="/user">
+                    <img className={cx('user-avt')} src={USER_INFO.avt} />
+                </Link>
+                <div className={cx('name-title')}>{USER_INFO.username}</div>
             </div>
-            <Link to="/profile" className={cx('profile')}>
+            <Link to="/user" className={cx('profile')}>
                 <FontAwesomeIcon icon={faUser} />
                 <div style={{ fontSize: 16, marginLeft: 8 }}>Tài khoản của tôi</div>
             </Link>
@@ -27,7 +34,7 @@ function SidebarUser({ data }) {
                 <FontAwesomeIcon icon={faBell} />
                 <div style={{ fontSize: 16, marginLeft: 8 }}>Thông báo</div>
             </Link>
-        </>
+        </div>
     );
 }
 
