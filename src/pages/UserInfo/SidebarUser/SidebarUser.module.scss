@@ -1,0 +1,36 @@
+.user-name {
+    display: flex;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.user-avt {
+    width: 48px;
+    border-radius: 50%;
+}
+
+.name-title {
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    margin-bottom: 12px;
+}
+
+.change-password {
+    display: flex;
+    font-size: 20px;
+    margin-bottom: 12px;
+    align-items: center;
+}
+
+.notifications {
+    display: flex;
+    font-size: 20px;
+    margin-bottom: 12px;
+    align-items: center;
+}
