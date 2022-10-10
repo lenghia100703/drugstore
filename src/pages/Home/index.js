@@ -36,7 +36,24 @@ function Home() {
                                 </div>
                             </div>
                         </div>
-                        <div className={cx('shop-list')}></div>
+                        <div className={cx('shop-list')}>
+                            <div className={cx('genre-select')}>
+                                <div>
+                                    <button className={cx('selectbtn', 'active')}>Gần tôi</button>
+                                    <button className={cx('selectbtn')}>Đặt nhiều</button>
+                                    <button className={cx('selectbtn')}>Vừa đặt</button>
+                                    <button className={cx('selectbtn')}>Nổi bật</button>
+                                </div>
+                                <select className={cx('select-local')}>
+                                    <option>Chọn quận/ huyện</option>
+                                    <option>Quận 1</option>
+                                    <option>Quận 2</option>
+                                    <option>Quận 3</option>
+                                    <option>Quận 4</option>
+                                    <option>Quận 5</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
