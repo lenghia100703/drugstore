@@ -1,12 +1,114 @@
-import { faAngleRight, faArrowRightLong, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { faAngleRight, faArrowRightLong, faMagnifyingGlass, faRotateRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames/bind';
+import { useEffect, useState } from 'react';
+import ShopItem from '../../components/ShopItem';
 
 import styles from './Home.module.scss';
 
 const cx = classNames.bind(styles);
 
+const LIST_SHOP_NEAR_ME = [
+    {
+        img: 'https://images.foody.vn/res/g12/111370/prof/s280x175/foody-upload-api-foody-mobile-1-jpg-180522135547.jpg',
+        nameshop: 'Nhà Thuốc EcoPharmaceuticals',
+        countshopplace: 8,
+        lowestprice: 0,
+        price: 150,
+        kindshop: 'SHOP/CỬA HÀNG, NHÀ THUỐC',
+    },
+    {
+        img: 'https://images.foody.vn/res/g12/111370/prof/s280x175/foody-upload-api-foody-mobile-1-jpg-180522135547.jpg',
+        nameshop: 'Nhà Thuốc EcoPharmaceuticals',
+        countshopplace: 8,
+        lowestprice: 0,
+        price: 150,
+        kindshop: 'SHOP/CỬA HÀNG, NHÀ THUỐC',
+    },
+    {
+        img: 'https://images.foody.vn/res/g12/111370/prof/s280x175/foody-upload-api-foody-mobile-1-jpg-180522135547.jpg',
+        nameshop: 'Nhà Thuốc EcoPharmaceuticals',
+        countshopplace: 8,
+        lowestprice: 0,
+        price: 150,
+        kindshop: 'SHOP/CỬA HÀNG, NHÀ THUỐC',
+    },
+    {
+        img: 'https://images.foody.vn/res/g12/111370/prof/s280x175/foody-upload-api-foody-mobile-1-jpg-180522135547.jpg',
+        nameshop: 'Nhà Thuốc EcoPharmaceuticals',
+        countshopplace: 8,
+        lowestprice: 0,
+        price: 150,
+        kindshop: 'SHOP/CỬA HÀNG, NHÀ THUỐC',
+    },
+    {
+        img: 'https://images.foody.vn/res/g12/111370/prof/s280x175/foody-upload-api-foody-mobile-1-jpg-180522135547.jpg',
+        nameshop: 'Nhà Thuốc EcoPharmaceuticals',
+        countshopplace: 8,
+        lowestprice: 0,
+        price: 150,
+        kindshop: 'SHOP/CỬA HÀNG, NHÀ THUỐC',
+    },
+];
+
+const LIST_SHOP_ORDER_LOT = [
+    {
+        img: 'https://images.foody.vn/res/g77/765395/prof/s280x175/foody-upload-api-foody-mobile-untitled-8-jpg-180731173054.jpg',
+        nameshop: 'Nhà Thuốc An Khang',
+        countshopplace: 14,
+        lowestprice: 0,
+        price: 59,
+        kindshop: 'SHOP/CỬA HÀNG',
+    },
+    {
+        img: 'https://images.foody.vn/res/g77/765395/prof/s280x175/foody-upload-api-foody-mobile-untitled-8-jpg-180731173054.jpg',
+        nameshop: 'Nhà Thuốc An Khang',
+        countshopplace: 14,
+        lowestprice: 0,
+        price: 59,
+        kindshop: 'SHOP/CỬA HÀNG',
+    },
+    {
+        img: 'https://images.foody.vn/res/g77/765395/prof/s280x175/foody-upload-api-foody-mobile-untitled-8-jpg-180731173054.jpg',
+        nameshop: 'Nhà Thuốc An Khang',
+        countshopplace: 14,
+        lowestprice: 0,
+        price: 59,
+        kindshop: 'SHOP/CỬA HÀNG',
+    },
+    {
+        img: 'https://images.foody.vn/res/g77/765395/prof/s280x175/foody-upload-api-foody-mobile-untitled-8-jpg-180731173054.jpg',
+        nameshop: 'Nhà Thuốc An Khang',
+        countshopplace: 14,
+        lowestprice: 0,
+        price: 59,
+        kindshop: 'SHOP/CỬA HÀNG',
+    },
+    {
+        img: 'https://images.foody.vn/res/g77/765395/prof/s280x175/foody-upload-api-foody-mobile-untitled-8-jpg-180731173054.jpg',
+        nameshop: 'Nhà Thuốc An Khang',
+        countshopplace: 14,
+        lowestprice: 0,
+        price: 59,
+        kindshop: 'SHOP/CỬA HÀNG',
+    },
+];
+
 function Home() {
+    const [show1, setShow1] = useState(true);
+    const [show2, setShow2] = useState(false);
+    const [show3, setShow3] = useState(false);
+    const [show4, setShow4] = useState(false);
+    useEffect(() => {
+        const allWithClass = Array.from(document.getElementsByClassName('Home_selectbtn__zz5IK'));
+        for (let i = 0; i < allWithClass.length; i++) {
+            allWithClass[i].addEventListener('click', function () {
+                var current = document.getElementsByClassName('Home_active__RyMPJ');
+                current[0].className = current[0].className.replace(' Home_active__RyMPJ', '');
+                this.className += ' Home_active__RyMPJ';
+            });
+        }
+    }, []);
     return (
         <div className={cx('wrapper')}>
             <div className={cx('inner')}>
@@ -39,10 +141,50 @@ function Home() {
                         <div className={cx('shop-list')}>
                             <div className={cx('genre-select')}>
                                 <div>
-                                    <button className={cx('selectbtn', 'active')}>Gần tôi</button>
-                                    <button className={cx('selectbtn')}>Đặt nhiều</button>
-                                    <button className={cx('selectbtn')}>Vừa đặt</button>
-                                    <button className={cx('selectbtn')}>Nổi bật</button>
+                                    <button
+                                        className={cx('selectbtn', 'active')}
+                                        onClick={() => {
+                                            setShow1(true);
+                                            setShow2(false);
+                                            setShow3(false);
+                                            setShow4(false);
+                                        }}
+                                    >
+                                        Gần tôi
+                                    </button>
+                                    <button
+                                        className={cx('selectbtn')}
+                                        onClick={() => {
+                                            setShow1(false);
+                                            setShow2(true);
+                                            setShow3(false);
+                                            setShow4(false);
+                                        }}
+                                    >
+                                        Đặt nhiều
+                                    </button>
+                                    <button
+                                        className={cx('selectbtn')}
+                                        onClick={() => {
+                                            setShow1(false);
+                                            setShow2(false);
+                                            setShow3(true);
+                                            setShow4(false);
+                                        }}
+                                    >
+                                        Vừa đặt
+                                    </button>
+                                    <button
+                                        className={cx('selectbtn')}
+                                        onClick={() => {
+                                            setShow1(false);
+                                            setShow2(false);
+                                            setShow3(false);
+                                            setShow4(true);
+                                        }}
+                                    >
+                                        Nổi bật
+                                    </button>
                                 </div>
                                 <select className={cx('select-local')}>
                                     <option>Chọn quận/ huyện</option>
@@ -52,6 +194,18 @@ function Home() {
                                     <option>Quận 4</option>
                                     <option>Quận 5</option>
                                 </select>
+                            </div>
+                            {show1 && LIST_SHOP_NEAR_ME.map((item, index) => <ShopItem data={item} key={index} />)}
+                            {show2 && LIST_SHOP_ORDER_LOT.map((item, index) => <ShopItem data={item} key={index} />)}
+                            {show3 && LIST_SHOP_NEAR_ME.map((item, index) => <ShopItem data={item} key={index} />)}
+                            {show4 && LIST_SHOP_NEAR_ME.map((item, index) => <ShopItem data={item} key={index} />)}
+                            <div className={cx('more')}>
+                                <button className={cx('more-btn')}>
+                                    Xem thêm
+                                    <span style={{ marginLeft: 4 }}>
+                                        <FontAwesomeIcon icon={faRotateRight} />
+                                    </span>
+                                </button>
                             </div>
                         </div>
                     </div>

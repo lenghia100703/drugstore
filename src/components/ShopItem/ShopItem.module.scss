@@ -1,0 +1,45 @@
+.wrapper {
+    color: black;
+    width: 100%;
+    margin-bottom: 12px;
+}
+
+.inner {
+    display: flex;
+    align-items: center;
+}
+
+.img {
+    display: flex;
+}
+
+.shop-img {
+    width: 142px;
+    height: 90px;
+    border-radius: 4px;
+}
+
+.title {
+    margin-left: 16px;
+}
+
+.name-shop {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.count-shop-place {
+    color: #0288d1;
+    &:hover {
+        color: #029df0;
+    }
+}
+
+.shop-info {
+    font-size: 14px;
+}
+
+.kind-shop {
+    font-size: 14px;
+    color: #959595;
+}
