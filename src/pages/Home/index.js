@@ -2,6 +2,7 @@ import { faAngleRight, faArrowRightLong, faMagnifyingGlass, faRotateRight } from
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames/bind';
 import { useEffect, useState } from 'react';
+import Search from '../../components/Search';
 import ShopItem from '../../components/ShopItem';
 
 import styles from './Home.module.scss';
@@ -94,6 +95,92 @@ const LIST_SHOP_ORDER_LOT = [
     },
 ];
 
+const LIST_SHOP_JUST_ORDER = [
+    {
+        img: 'https://images.foody.vn/res/g100004/1000037772/prof/s280x175/file_9d910b54-3f67-4a5c-bc74-d63-657e084f-211118083446.jpeg',
+        nameshop: 'Nhà Thuốc Thái Minh - Minh Hiếu',
+        countshopplace: 3,
+        lowestprice: 20,
+        price: 56,
+        kindshop: 'SHOP/CỬA HÀNG',
+    },
+    {
+        img: 'https://images.foody.vn/res/g100004/1000037772/prof/s280x175/file_9d910b54-3f67-4a5c-bc74-d63-657e084f-211118083446.jpeg',
+        nameshop: 'Nhà Thuốc Thái Minh - Minh Hiếu',
+        countshopplace: 3,
+        lowestprice: 20,
+        price: 56,
+        kindshop: 'SHOP/CỬA HÀNG',
+    },
+    {
+        img: 'https://images.foody.vn/res/g100004/1000037772/prof/s280x175/file_9d910b54-3f67-4a5c-bc74-d63-657e084f-211118083446.jpeg',
+        nameshop: 'Nhà Thuốc Thái Minh - Minh Hiếu',
+        countshopplace: 3,
+        lowestprice: 20,
+        price: 56,
+        kindshop: 'SHOP/CỬA HÀNG',
+    },
+    {
+        img: 'https://images.foody.vn/res/g100004/1000037772/prof/s280x175/file_9d910b54-3f67-4a5c-bc74-d63-657e084f-211118083446.jpeg',
+        nameshop: 'Nhà Thuốc Thái Minh - Minh Hiếu',
+        countshopplace: 3,
+        lowestprice: 20,
+        price: 56,
+        kindshop: 'SHOP/CỬA HÀNG',
+    },
+    {
+        img: 'https://images.foody.vn/res/g100004/1000037772/prof/s280x175/file_9d910b54-3f67-4a5c-bc74-d63-657e084f-211118083446.jpeg',
+        nameshop: 'Nhà Thuốc Thái Minh - Minh Hiếu',
+        countshopplace: 3,
+        lowestprice: 20,
+        price: 56,
+        kindshop: 'SHOP/CỬA HÀNG',
+    },
+];
+
+const LIST_SHOP_FEATURED = [
+    {
+        img: 'https://images.foody.vn/res/g100004/1000037772/prof/s280x175/file_9d910b54-3f67-4a5c-bc74-d63-657e084f-211118083446.jpeg',
+        nameshop: 'Hàng Pháp Nhập Khẩu Urgo - Thiết Bị Y Tế',
+        countshopplace: 1,
+        lowestprice: 20,
+        price: 127,
+        kindshop: 'NHÀ THUỐC',
+    },
+    {
+        img: 'https://images.foody.vn/res/g100004/1000037772/prof/s280x175/file_9d910b54-3f67-4a5c-bc74-d63-657e084f-211118083446.jpeg',
+        nameshop: 'Hàng Pháp Nhập Khẩu Urgo - Thiết Bị Y Tế',
+        countshopplace: 1,
+        lowestprice: 20,
+        price: 127,
+        kindshop: 'NHÀ THUỐC',
+    },
+    {
+        img: 'https://images.foody.vn/res/g100004/1000037772/prof/s280x175/file_9d910b54-3f67-4a5c-bc74-d63-657e084f-211118083446.jpeg',
+        nameshop: 'Hàng Pháp Nhập Khẩu Urgo - Thiết Bị Y Tế',
+        countshopplace: 1,
+        lowestprice: 20,
+        price: 127,
+        kindshop: 'NHÀ THUỐC',
+    },
+    {
+        img: 'https://images.foody.vn/res/g100004/1000037772/prof/s280x175/file_9d910b54-3f67-4a5c-bc74-d63-657e084f-211118083446.jpeg',
+        nameshop: 'Hàng Pháp Nhập Khẩu Urgo - Thiết Bị Y Tế',
+        countshopplace: 1,
+        lowestprice: 20,
+        price: 127,
+        kindshop: 'NHÀ THUỐC',
+    },
+    {
+        img: 'https://images.foody.vn/res/g100004/1000037772/prof/s280x175/file_9d910b54-3f67-4a5c-bc74-d63-657e084f-211118083446.jpeg',
+        nameshop: 'Hàng Pháp Nhập Khẩu Urgo - Thiết Bị Y Tế',
+        countshopplace: 1,
+        lowestprice: 20,
+        price: 127,
+        kindshop: 'NHÀ THUỐC',
+    },
+];
+
 function Home() {
     const [show1, setShow1] = useState(true);
     const [show2, setShow2] = useState(false);
@@ -117,12 +204,7 @@ function Home() {
                         <h1 className={cx('title')}>Đặt Thuốc, giao hàng từ 20'...</h1>
                         <div className={cx('local')}>Có 52 Địa Điểm Ở TP. HCM Từ 00:00 - 23:59</div>
                     </div>
-                    <div className={cx('search')}>
-                        <input placeholder="Tìm nhà thuốc, cửa hàng hóa mỹ phẩm..." className={cx('input-search')} />
-                        <button className={cx('search-btn')}>
-                            <FontAwesomeIcon icon={faMagnifyingGlass} className={cx('search-icon')} />
-                        </button>
-                    </div>
+                    <Search />
                 </div>
                 <div className={cx('content-right')}>
                     <div className={cx('main-right')}>
@@ -197,8 +279,8 @@ function Home() {
                             </div>
                             {show1 && LIST_SHOP_NEAR_ME.map((item, index) => <ShopItem data={item} key={index} />)}
                             {show2 && LIST_SHOP_ORDER_LOT.map((item, index) => <ShopItem data={item} key={index} />)}
-                            {show3 && LIST_SHOP_NEAR_ME.map((item, index) => <ShopItem data={item} key={index} />)}
-                            {show4 && LIST_SHOP_NEAR_ME.map((item, index) => <ShopItem data={item} key={index} />)}
+                            {show3 && LIST_SHOP_JUST_ORDER.map((item, index) => <ShopItem data={item} key={index} />)}
+                            {show4 && LIST_SHOP_FEATURED.map((item, index) => <ShopItem data={item} key={index} />)}
                             <div className={cx('more')}>
                                 <button className={cx('more-btn')}>
                                     Xem thêm

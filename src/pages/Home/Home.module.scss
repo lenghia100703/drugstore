@@ -3,8 +3,7 @@
     background-size: cover;
     height: 100vh;
     z-index: 0;
-    position: relative;
-    top: 70px;
+    margin-top: 70px;
     color: #fff;
 }
 
@@ -30,42 +29,6 @@
 
 .local {
     font-size: 15px;
-}
-
-.search {
-    display: flex;
-    max-width: 470px;
-    margin-top: 24px;
-}
-
-.input-search {
-    border: none;
-    outline: none;
-    height: 50px;
-    width: 470px;
-    border-radius: 5px 0 0 5px;
-    padding-left: 10px;
-    padding-right: 75px;
-
-    &::placeholder {
-        font-size: 16px;
-    }
-}
-
-.search-btn {
-    background-color: #1877f2;
-    width: 70px;
-    height: 50px;
-    border-radius: 0 5px 5px 0;
-
-    &:hover {
-        background-color: #166fe5;
-    }
-}
-
-.search-icon {
-    font-size: 24px;
-    color: #f2f2f2;
 }
 
 .content-right {
@@ -121,9 +84,11 @@
 .selectbtn {
     margin-right: 40px;
     font-size: 16px;
+    padding: 10px 0 10px 0;
 }
 
 .active {
+    padding: 10px 0 10px 0;
     color: #0288d1;
 }
 
