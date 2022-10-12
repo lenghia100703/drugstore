@@ -2,6 +2,7 @@ import { faUser } from '@fortawesome/free-regular-svg-icons';
 import { faLock, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames/bind';
+import { Link } from 'react-router-dom';
 
 import styles from './Register.module.scss';
 
@@ -14,7 +15,7 @@ function Register() {
                 <div className={cx('logo')}>
                     <h1>DRUG STORE</h1>
                 </div>
-                <div className={cx('content')}>
+                <form className={cx('content')}>
                     <div className={cx('close-btn')}>
                         <FontAwesomeIcon icon={faXmark} />
                     </div>
@@ -34,7 +35,10 @@ function Register() {
                         <input placeholder="Nhập lại mật khẩu" className={cx('input')} type="password" />
                     </div>
                     <button className={cx('register-btn')}>ĐĂNG KÝ</button>
-                </div>
+                    <div>
+                        Bạn đã có tài khoản? <Link to="/login" style={{ color: 'blue' }}>Đăng nhập</Link>
+                    </div>
+                </form>
             </div>
         </div>
     );
