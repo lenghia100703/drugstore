@@ -1,0 +1,21 @@
+.wrapper {
+    background-color: #fff;
+    width: 990px;
+    margin-left: 200px;
+    margin-top: -215px;
+    height: 350px;
+    padding: 10px 24px 0 24px;
+}
+
+.header {
+    position: relative;
+    padding-bottom: 16px;
+    &:after {
+        content: '';
+        border-bottom: 1px solid rgba(22, 24, 35, 0.12);
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+}

@@ -33,6 +33,14 @@
     align-items: center;
     font-size: 20px;
     margin-bottom: 12px;
+
+    &.active {
+        color: #cf2127;
+    }
+
+    &:hover {
+        color: #cf2127;
+    }
 }
 
 .change-password {
@@ -40,6 +48,29 @@
     font-size: 20px;
     margin-bottom: 12px;
     align-items: center;
+
+    &.active {
+        color: #cf2127;
+    }
+
+    &:hover {
+        color: #cf2127;
+    }
+}
+
+.my-address {
+    display: flex;
+    font-size: 20px;
+    margin-bottom: 12px;
+    align-items: center;
+
+    &.active {
+        color: #cf2127;
+    }
+
+    &:hover {
+        color: #cf2127;
+    }
 }
 
 .notifications {
@@ -47,4 +78,12 @@
     font-size: 20px;
     margin-bottom: 12px;
     align-items: center;
+
+    &.active {
+        color: #cf2127;
+    }
+
+    &:hover {
+        color: #cf2127;
+    }
 }

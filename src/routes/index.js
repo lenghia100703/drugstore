@@ -1,5 +1,6 @@
 import DefaultLayout from '../layouts/DefaultLayout';
 import SidebarLayout from '../layouts/SidebarLayout';
+import Address from '../pages/Address';
 import Cart from '../pages/Cart';
 import Home from '../pages/Home';
 import Login from '../pages/Login';
@@ -14,6 +15,7 @@ const publicRoutes = [
     { path: '/register', components: Register, layout: DefaultLayout },
     { path: '/user', components: Profile, layout: SidebarLayout },
     { path: '/password', components: Password, layout: SidebarLayout },
+    { path: '/address', components: Address, layout: SidebarLayout },
     { path: '/cart', components: Cart, layout: DefaultLayout },
     { path: '/nha-thuoc-ecopharmaceuticals', components: ShopDetals, layout: DefaultLayout },
 ];

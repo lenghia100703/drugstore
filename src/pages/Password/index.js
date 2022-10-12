@@ -13,11 +13,11 @@ function Password() {
             <div className={cx('user-info')}>
                 <div className={cx('new-password')}>
                     <div className={cx('title')}>Mật Khẩu Mới</div>
-                    <input className={cx('input-name')} />
+                    <input className={cx('input-name')} type="password" />
                 </div>
                 <div className={cx('check-password')}>
                     <div className={cx('title')}>Xác Nhận Mật Khẩu</div>
-                    <input className={cx('input-name')} />
+                    <input className={cx('input-name')} type="password" />
                 </div>
                 <div className={cx('save')}>
                     <button className={cx('save-btn')}>Xác Nhận</button>
