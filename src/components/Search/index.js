@@ -76,7 +76,7 @@ function Search() {
             )}
             onClickOutside={() => setShowResults(false)}
         >
-            <div className={cx('search')}>
+            <div className={cx('form-search')}>
                 <input
                     ref={searchRef}
                     value={searchValue}
