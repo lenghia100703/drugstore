@@ -15,7 +15,7 @@ function Login() {
                 <div className={cx('logo')}>
                     <h1>DRUG STORE</h1>
                 </div>
-                <div className={cx('content')}>
+                <form className={cx('content')}>
                     <div className={cx('close-btn')}>
                         <FontAwesomeIcon icon={faXmark} />
                     </div>
@@ -30,13 +30,13 @@ function Login() {
                         <FontAwesomeIcon icon={faLock} style={{ marginRight: 8 }} />
                         <input placeholder="Mật khẩu" className={cx('input')} type="password" />
                     </div>
-                    <button className={cx('login-btn')}>ĐĂNG NHẬP</button>
-                    <button className={cx('register-btn')}>
-                        <Link to="/register" style={{ color: 'white' }}>
+                    <button type="submit" className={cx('login-btn')}>ĐĂNG NHẬP</button>
+                    <Link to="/register" style={{ color: 'white' }}>
+                        <button className={cx('register-btn')}>
                             TẠO TÀI KHOẢN MỚI
-                        </Link>
-                    </button>
-                </div>
+                        </button>
+                    </Link>
+                </form>
             </div>
         </div>
     );

@@ -25,6 +25,7 @@
     border-radius: 15px;
     padding: 20px;
     height: 400px;
+    align-items: center;
 }
 
 .close-btn {
@@ -41,8 +42,10 @@
     align-items: center;
     border: 1px solid #464646;
     border-radius: 999px;
-    height: 40px;
-    padding: 0 20px 0 20px;
+    // height: 40px;
+    // padding: 0 20px 0 20px;
+    padding: 12px;
+    width: 100%;
     margin-bottom: 24px;
 }
 
@@ -50,6 +53,7 @@
     outline: none;
     border: none;
     width: 100%;
+    font-size: 16px;
     &::placeholder {
         font-size: 16px;
     }
@@ -58,10 +62,12 @@
 .login-btn {
     background-color: #1877f2;
     border-radius: 999px;
-    height: 40px;
+    // height: 40px;
+    width: 100%;
+    padding: 12px 10px;
     color: #fff;
     font-weight: 600;
-    margin-bottom: 72px;
+    margin-bottom: 52px;
 
     &:hover {
         background-color: #166fe5;
@@ -73,8 +79,9 @@
     margin-right: auto;
     background-color: #42b72a;
     border-radius: 999px;
-    height: 40px;
-    width: 200px;
+    // height: 40px;
+    // width: 200px;
+    padding: 10px 50px;
     color: #fff;
     font-weight: 600;
 
