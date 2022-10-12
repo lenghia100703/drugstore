@@ -1,6 +1,7 @@
 import { faUser } from '@fortawesome/free-regular-svg-icons';
 import { faArrowRightFromBracket, faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { click } from '@testing-library/user-event/dist/click';
 import HeadlessTippy from '@tippyjs/react/headless';
 import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
@@ -55,6 +56,7 @@ function UserPopper({ children }) {
                     </div>
                 </div>
             )}
+            trigger="click"
         >
             {children}
         </HeadlessTippy>

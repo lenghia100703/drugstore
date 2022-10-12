@@ -1,6 +1,7 @@
 import { faCoins, faTag } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames/bind';
+import { Link } from 'react-router-dom';
 
 import styles from './ShopItem.module.scss';
 
@@ -9,7 +10,7 @@ const cx = classNames.bind(styles);
 function ShopItem({ data }) {
     return (
         <div className={cx('wrapper')}>
-            <div className={cx('inner')}>
+            <Link className={cx('inner')} to={data.to}>
                 <div className={cx('img')}>
                     <img src={data.img} className={cx('shop-img')} />
                 </div>
@@ -26,7 +27,7 @@ function ShopItem({ data }) {
                     </div>
                     <span className={cx('kind-shop')}>{data.kindshop}</span>
                 </div>
-            </div>
+            </Link>
         </div>
     );
 }

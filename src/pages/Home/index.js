@@ -9,7 +9,7 @@ import styles from './Home.module.scss';
 
 const cx = classNames.bind(styles);
 
-const LIST_SHOP_NEAR_ME = [
+export const LIST_SHOP_NEAR_ME = [
     {
         img: 'https://images.foody.vn/res/g12/111370/prof/s280x175/foody-upload-api-foody-mobile-1-jpg-180522135547.jpg',
         nameshop: 'Nhà Thuốc EcoPharmaceuticals',
@@ -17,6 +17,12 @@ const LIST_SHOP_NEAR_ME = [
         lowestprice: 0,
         price: 150,
         kindshop: 'SHOP/CỬA HÀNG, NHÀ THUỐC',
+        to: '/nha-thuoc-ecopharmaceuticals',
+        address: '33 Lê Ngã, P. Phú Trung, Tân Phú, TP. HCM',
+        isOpen: true,
+        minprice: 20000,
+        maxprice: 500000,
+        countstar: 4,
     },
     {
         img: 'https://images.foody.vn/res/g12/111370/prof/s280x175/foody-upload-api-foody-mobile-1-jpg-180522135547.jpg',
@@ -24,7 +30,10 @@ const LIST_SHOP_NEAR_ME = [
         countshopplace: 8,
         lowestprice: 0,
         price: 150,
+        to: '/nha-thuoc-ecopharmaceuticals',
         kindshop: 'SHOP/CỬA HÀNG, NHÀ THUỐC',
+        address: '33 Lê Ngã, P. Phú Trung, Tân Phú, TP. HCM',
+        isOpen: true,
     },
     {
         img: 'https://images.foody.vn/res/g12/111370/prof/s280x175/foody-upload-api-foody-mobile-1-jpg-180522135547.jpg',
@@ -32,7 +41,10 @@ const LIST_SHOP_NEAR_ME = [
         countshopplace: 8,
         lowestprice: 0,
         price: 150,
+        to: '/nha-thuoc-ecopharmaceuticals',
         kindshop: 'SHOP/CỬA HÀNG, NHÀ THUỐC',
+        address: '33 Lê Ngã, P. Phú Trung, Tân Phú, TP. HCM',
+        isOpen: true,
     },
     {
         img: 'https://images.foody.vn/res/g12/111370/prof/s280x175/foody-upload-api-foody-mobile-1-jpg-180522135547.jpg',
@@ -40,7 +52,10 @@ const LIST_SHOP_NEAR_ME = [
         countshopplace: 8,
         lowestprice: 0,
         price: 150,
+        to: '/nha-thuoc-ecopharmaceuticals',
         kindshop: 'SHOP/CỬA HÀNG, NHÀ THUỐC',
+        address: '33 Lê Ngã, P. Phú Trung, Tân Phú, TP. HCM',
+        isOpen: true,
     },
     {
         img: 'https://images.foody.vn/res/g12/111370/prof/s280x175/foody-upload-api-foody-mobile-1-jpg-180522135547.jpg',
@@ -48,7 +63,10 @@ const LIST_SHOP_NEAR_ME = [
         countshopplace: 8,
         lowestprice: 0,
         price: 150,
+        to: '/nha-thuoc-ecopharmaceuticals',
         kindshop: 'SHOP/CỬA HÀNG, NHÀ THUỐC',
+        address: '33 Lê Ngã, P. Phú Trung, Tân Phú, TP. HCM',
+        isOpen: true,
     },
 ];
 
@@ -60,6 +78,9 @@ const LIST_SHOP_ORDER_LOT = [
         lowestprice: 0,
         price: 59,
         kindshop: 'SHOP/CỬA HÀNG',
+        to: '/nha-thuoc-an-khang',
+        address: '33 Lê Ngã, P. Phú Trung, Tân Phú, TP. HCM',
+        isOpen: true,
     },
     {
         img: 'https://images.foody.vn/res/g77/765395/prof/s280x175/foody-upload-api-foody-mobile-untitled-8-jpg-180731173054.jpg',
@@ -67,7 +88,10 @@ const LIST_SHOP_ORDER_LOT = [
         countshopplace: 14,
         lowestprice: 0,
         price: 59,
+        to: '/nha-thuoc-an-khang',
         kindshop: 'SHOP/CỬA HÀNG',
+        address: '33 Lê Ngã, P. Phú Trung, Tân Phú, TP. HCM',
+        isOpen: true,
     },
     {
         img: 'https://images.foody.vn/res/g77/765395/prof/s280x175/foody-upload-api-foody-mobile-untitled-8-jpg-180731173054.jpg',
@@ -75,7 +99,10 @@ const LIST_SHOP_ORDER_LOT = [
         countshopplace: 14,
         lowestprice: 0,
         price: 59,
+        to: '/nha-thuoc-an-khang',
         kindshop: 'SHOP/CỬA HÀNG',
+        address: '33 Lê Ngã, P. Phú Trung, Tân Phú, TP. HCM',
+        isOpen: true,
     },
     {
         img: 'https://images.foody.vn/res/g77/765395/prof/s280x175/foody-upload-api-foody-mobile-untitled-8-jpg-180731173054.jpg',
@@ -83,7 +110,10 @@ const LIST_SHOP_ORDER_LOT = [
         countshopplace: 14,
         lowestprice: 0,
         price: 59,
+        to: '/nha-thuoc-an-khang',
         kindshop: 'SHOP/CỬA HÀNG',
+        address: '33 Lê Ngã, P. Phú Trung, Tân Phú, TP. HCM',
+        isOpen: true,
     },
     {
         img: 'https://images.foody.vn/res/g77/765395/prof/s280x175/foody-upload-api-foody-mobile-untitled-8-jpg-180731173054.jpg',
@@ -91,7 +121,10 @@ const LIST_SHOP_ORDER_LOT = [
         countshopplace: 14,
         lowestprice: 0,
         price: 59,
+        to: '/nha-thuoc-an-khang',
         kindshop: 'SHOP/CỬA HÀNG',
+        address: '33 Lê Ngã, P. Phú Trung, Tân Phú, TP. HCM',
+        isOpen: true,
     },
 ];
 
@@ -103,6 +136,9 @@ const LIST_SHOP_JUST_ORDER = [
         lowestprice: 20,
         price: 56,
         kindshop: 'SHOP/CỬA HÀNG',
+        to: '/nha-thuoc-thai-minh',
+        address: '33 Lê Ngã, P. Phú Trung, Tân Phú, TP. HCM',
+        isOpen: false,
     },
     {
         img: 'https://images.foody.vn/res/g100004/1000037772/prof/s280x175/file_9d910b54-3f67-4a5c-bc74-d63-657e084f-211118083446.jpeg',
@@ -111,6 +147,20 @@ const LIST_SHOP_JUST_ORDER = [
         lowestprice: 20,
         price: 56,
         kindshop: 'SHOP/CỬA HÀNG',
+        to: '/nha-thuoc-thai-minh',
+        address: '33 Lê Ngã, P. Phú Trung, Tân Phú, TP. HCM',
+        isOpen: false,
+    },
+    {
+        img: 'https://images.foody.vn/res/g100004/1000037772/prof/s280x175/file_9d910b54-3f67-4a5c-bc74-d63-657e084f-211118083446.jpeg',
+        nameshop: 'Nhà Thuốc Thái Minh - Minh Hiếu',
+        countshopplace: 3,
+        lowestprice: 20,
+        price: 56,
+        to: '/nha-thuoc-thai-minh',
+        kindshop: 'SHOP/CỬA HÀNG',
+        address: '33 Lê Ngã, P. Phú Trung, Tân Phú, TP. HCM',
+        isOpen: false,
     },
     {
         img: 'https://images.foody.vn/res/g100004/1000037772/prof/s280x175/file_9d910b54-3f67-4a5c-bc74-d63-657e084f-211118083446.jpeg',
@@ -119,6 +169,9 @@ const LIST_SHOP_JUST_ORDER = [
         lowestprice: 20,
         price: 56,
         kindshop: 'SHOP/CỬA HÀNG',
+        to: '/nha-thuoc-thai-minh',
+        address: '33 Lê Ngã, P. Phú Trung, Tân Phú, TP. HCM',
+        isOpen: false,
     },
     {
         img: 'https://images.foody.vn/res/g100004/1000037772/prof/s280x175/file_9d910b54-3f67-4a5c-bc74-d63-657e084f-211118083446.jpeg',
@@ -126,15 +179,10 @@ const LIST_SHOP_JUST_ORDER = [
         countshopplace: 3,
         lowestprice: 20,
         price: 56,
+        to: '/nha-thuoc-thai-minh',
         kindshop: 'SHOP/CỬA HÀNG',
-    },
-    {
-        img: 'https://images.foody.vn/res/g100004/1000037772/prof/s280x175/file_9d910b54-3f67-4a5c-bc74-d63-657e084f-211118083446.jpeg',
-        nameshop: 'Nhà Thuốc Thái Minh - Minh Hiếu',
-        countshopplace: 3,
-        lowestprice: 20,
-        price: 56,
-        kindshop: 'SHOP/CỬA HÀNG',
+        address: '33 Lê Ngã, P. Phú Trung, Tân Phú, TP. HCM',
+        isOpen: false,
     },
 ];
 
@@ -146,6 +194,9 @@ const LIST_SHOP_FEATURED = [
         lowestprice: 20,
         price: 127,
         kindshop: 'NHÀ THUỐC',
+        to: '/hang-phap-nhap-khau-urgo',
+        address: '33 Lê Ngã, P. Phú Trung, Tân Phú, TP. HCM',
+        isOpen: false,
     },
     {
         img: 'https://images.foody.vn/res/g100004/1000037772/prof/s280x175/file_9d910b54-3f67-4a5c-bc74-d63-657e084f-211118083446.jpeg',
@@ -154,6 +205,9 @@ const LIST_SHOP_FEATURED = [
         lowestprice: 20,
         price: 127,
         kindshop: 'NHÀ THUỐC',
+        to: '/hang-phap-nhap-khau-urgo',
+        address: '33 Lê Ngã, P. Phú Trung, Tân Phú, TP. HCM',
+        isOpen: false,
     },
     {
         img: 'https://images.foody.vn/res/g100004/1000037772/prof/s280x175/file_9d910b54-3f67-4a5c-bc74-d63-657e084f-211118083446.jpeg',
@@ -162,6 +216,9 @@ const LIST_SHOP_FEATURED = [
         lowestprice: 20,
         price: 127,
         kindshop: 'NHÀ THUỐC',
+        to: '/hang-phap-nhap-khau-urgo',
+        address: '33 Lê Ngã, P. Phú Trung, Tân Phú, TP. HCM',
+        isOpen: false,
     },
     {
         img: 'https://images.foody.vn/res/g100004/1000037772/prof/s280x175/file_9d910b54-3f67-4a5c-bc74-d63-657e084f-211118083446.jpeg',
@@ -170,6 +227,9 @@ const LIST_SHOP_FEATURED = [
         lowestprice: 20,
         price: 127,
         kindshop: 'NHÀ THUỐC',
+        to: '/hang-phap-nhap-khau-urgo',
+        address: '33 Lê Ngã, P. Phú Trung, Tân Phú, TP. HCM',
+        isOpen: false,
     },
     {
         img: 'https://images.foody.vn/res/g100004/1000037772/prof/s280x175/file_9d910b54-3f67-4a5c-bc74-d63-657e084f-211118083446.jpeg',
@@ -178,6 +238,9 @@ const LIST_SHOP_FEATURED = [
         lowestprice: 20,
         price: 127,
         kindshop: 'NHÀ THUỐC',
+        to: '/hang-phap-nhap-khau-urgo',
+        address: '33 Lê Ngã, P. Phú Trung, Tân Phú, TP. HCM',
+        isOpen: false,
     },
 ];
 

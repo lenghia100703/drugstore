@@ -6,6 +6,7 @@ import Login from '../pages/Login';
 import Password from '../pages/Password';
 import Profile from '../pages/Profile';
 import Register from '../pages/Register';
+import ShopDetals from '../pages/ShopDetals';
 
 const publicRoutes = [
     { path: '/', components: Home, layout: DefaultLayout },
@@ -14,6 +15,7 @@ const publicRoutes = [
     { path: '/user', components: Profile, layout: SidebarLayout },
     { path: '/password', components: Password, layout: SidebarLayout },
     { path: '/cart', components: Cart, layout: DefaultLayout },
+    { path: '/nha-thuoc-ecopharmaceuticals', components: ShopDetals, layout: DefaultLayout },
 ];
 
 const privateRoutes = [];

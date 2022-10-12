@@ -1,3 +1,4 @@
+import { faBell } from '@fortawesome/free-regular-svg-icons';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames/bind';
@@ -9,7 +10,7 @@ import styles from './Header.module.scss';
 const cx = classNames.bind(styles);
 
 function Header() {
-    const USER = false;
+    const USER = true;
 
     return (
         <div className={cx('wrapper')}>
@@ -23,7 +24,7 @@ function Header() {
                 </div>
                 <div className={cx('right')}>
                     <div className={cx('icon-search')}>
-                        <FontAwesomeIcon icon={faMagnifyingGlass} />
+                        <FontAwesomeIcon icon={faBell} />
                     </div>
                     {USER ? (
                         <div className={cx('user')}>
