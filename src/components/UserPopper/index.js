@@ -22,6 +22,11 @@ const USER_POPPER = [
         title: 'Giỏ hàng',
     },
     {
+        to: '/history-order',
+        icon: <FontAwesomeIcon icon={faCartShopping} />,
+        title: 'Lịch sử đã mua',
+    },
+    {
         icon: <FontAwesomeIcon icon={faArrowRightFromBracket} />,
         title: 'Đăng xuất',
         separate: true,

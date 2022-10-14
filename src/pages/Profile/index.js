@@ -11,9 +11,17 @@ function Profile() {
                 <h3>Hồ Sơ Của Tôi</h3>
             </div>
             <div className={cx('user-info')}>
-                <div className={cx('name')}>
+                <div className={cx('user-name')}>
                     <div className={cx('title')}>Tên đăng nhập</div>
-                    <input value="lenghia1007" className={cx('input-name')} />
+                    <input value="lenghia1007" className={cx('input-username')} />
+                </div>
+                <div className={cx('full-name')}>
+                    <div className={cx('title')}>Tên đầy đủ</div>
+                    <input value="Lê Nghĩa" className={cx('input-fullname')} spellCheck={false} />
+                </div>
+                <div className={cx('email')}>
+                    <div className={cx('title')}>Email</div>
+                    <input value="adminabc123@gmail.com" className={cx('input-email')} spellCheck={false} />
                 </div>
                 <div className={cx('gender')}>
                     <div className={cx('title')}>Giới tính</div>

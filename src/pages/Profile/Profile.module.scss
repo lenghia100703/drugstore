@@ -3,8 +3,8 @@
     width: 990px;
     margin-left: 200px;
     margin-top: -215px;
-    height: 350px;
-    padding: 10px 24px 0 24px;
+    height: 100%;
+    padding: 10px 24px 10px 24px;
 }
 
 .header {
@@ -24,13 +24,41 @@
     margin-top: 36px;
 }
 
-.name {
+.user-name {
     display: flex;
     align-items: center;
     margin-bottom: 24px;
 }
 
-.input-name {
+.full-name {
+    display: flex;
+    align-items: center;
+    margin-bottom: 24px;
+    margin-left: 23px;
+}
+
+.email {
+    display: flex;
+    align-items: center;
+    margin-bottom: 24px;
+    margin-left: 57px;
+}
+
+.input-fullname {
+    height: 40px;
+    width: 450px;
+    outline: none;
+    padding: 12px;
+}
+
+.input-username {
+    height: 40px;
+    width: 450px;
+    outline: none;
+    padding: 12px;
+}
+
+.input-email {
     height: 40px;
     width: 450px;
     outline: none;

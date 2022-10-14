@@ -1,5 +1,5 @@
 .menu-list {
-    height: 138px;
+    height: 100%;
     width: 180px;
     position: relative;
     line-height: 22px;
@@ -41,6 +41,7 @@
 }
 
 .btn-item {
+    height: 100%;
     width: 100%;
     border: none;
     outline: none;
@@ -49,6 +50,8 @@
     font-weight: 500;
     font-size: 16px;
     padding: 0px;
+    display: flex;
+    align-items: center;
 }
 
 .icon-item {
