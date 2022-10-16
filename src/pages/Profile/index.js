@@ -1,38 +1,57 @@
 import classNames from 'classnames/bind';
+import { useState } from 'react';
 
 import styles from './Profile.module.scss';
 
 const cx = classNames.bind(styles);
 
 function Profile() {
+    const [username, setUsername] = useState('');
+    const [fullname, setFullName] = useState('');
+    const [email, setEmail] = useState('');
+
+    const handleSubmit = (e) => {
+        alert(`username: ${username}, fullname: ${fullname}, email: ${email}`);
+        e.preventDefault();
+    };
+
     return (
         <div className={cx('wrapper')}>
             <div className={cx('header')}>
                 <h3>Hồ Sơ Của Tôi</h3>
             </div>
-            <div className={cx('user-info')}>
+            <form className={cx('user-info')} onSubmit={handleSubmit}>
                 <div className={cx('user-name')}>
                     <div className={cx('title')}>Tên đăng nhập</div>
-                    <input value="lenghia1007" className={cx('input-username')} />
+                    <input
+                        className={cx('input-username')}
+                        value={username == '' ? 'lenghia1007' : username}
+                        onChange={(e) => {
+                            setUsername(e.target.value);
+                        }}
+                    />
                 </div>
                 <div className={cx('full-name')}>
                     <div className={cx('title')}>Tên đầy đủ</div>
-                    <input value="Lê Nghĩa" className={cx('input-fullname')} spellCheck={false} />
+                    <input
+                        value={fullname == '' ? 'Lê Nghĩa' : fullname}
+                        onChange={(e) => {
+                            setFullName(e.target.value);
+                        }}
+                        className={cx('input-fullname')}
+                        spellCheck={false}
+                    />
                 </div>
                 <div className={cx('email')}>
                     <div className={cx('title')}>Email</div>
-                    <input value="adminabc123@gmail.com" className={cx('input-email')} spellCheck={false} />
-                </div>
-                <div className={cx('gender')}>
-                    <div className={cx('title')}>Giới tính</div>
-                    <input type="radio" id="men" name="gender" style={{ marginRight: 8 }} />
-                    <label for="men" style={{ marginRight: 8 }}>
-                        Nam
-                    </label>
-                    <input type="radio" id="women" name="gender" style={{ marginRight: 8 }} />
-                    <label for="women" style={{ marginRight: 8 }}>
-                        Nữ
-                    </label>
+                    <input
+                        value={email == '' ? 'abc123@gmail.com' : email}
+                        onChange={(e) => {
+                            setEmail(e.target.value);
+                        }}
+                        className={cx('input-email')}
+                        spellCheck={false}
+                    />
                 </div>
                 <div className={cx('birthday')}>
                     <div className={cx('title')}>Ngày sinh</div>
@@ -49,7 +68,7 @@ function Profile() {
                 <div className={cx('save')}>
                     <button className={cx('save-btn')}>Lưu</button>
                 </div>
-            </div>
+            </form>
         </div>
     );
 }

@@ -1,3 +1,4 @@
+import CartLayout from '../layouts/CartLayout';
 import DefaultLayout from '../layouts/DefaultLayout';
 import SidebarLayout from '../layouts/SidebarLayout';
 import Address from '../pages/Address';
@@ -17,7 +18,7 @@ const publicRoutes = [
     { path: '/user', components: Profile, layout: SidebarLayout },
     { path: '/password', components: Password, layout: SidebarLayout },
     { path: '/address', components: Address, layout: SidebarLayout },
-    { path: '/cart', components: Cart, layout: DefaultLayout },
+    { path: '/cart', components: Cart, layout: CartLayout },
     { path: '/history-order', components: HistoryOrder, layout: DefaultLayout },
     { path: '/nha-thuoc-ecopharmaceuticals', components: ShopDetals, layout: DefaultLayout },
 ];
