@@ -1,7 +1,6 @@
 .wrapper {
     margin-top: 70px;
     padding: 20px;
-    height: 100%;
 }
 
 .title {
@@ -11,7 +10,6 @@
 
 .body {
     width: 1200px;
-    height: 100%;
     margin-left: auto;
     margin-right: auto;
     background-color: #fff;
@@ -22,14 +20,12 @@
 }
 
 .rows-1 {
-    height: 100%;
     display: grid;
     border-bottom: 1px solid rgba(22, 24, 35, 0.12);
     grid-template-columns: 4.77% 14.19% 17.61% 24.29% 18.47% 9.05% 11.62%;
 }
 
 .rows-2 {
-    height: 100%;
     display: grid;
     border-bottom: 1px solid rgba(22, 24, 35, 0.12);
     grid-template-columns: 4.77% 14.19% 17.61% 24.29% 18.47% 9.05% 11.62%;
@@ -38,7 +34,6 @@
 
 .col {
     padding: 0 5px 0 5px;
-    height: 100%;
 }
 
 .col-1 {
