@@ -1,7 +1,8 @@
 import { faCircle, faCoins, faMagnifyingGlass, faStar } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames/bind';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import Modal from '../../components/Modal';
 import ProductItem from '../../components/ProductItem';
 import { LIST_SHOP_NEAR_ME } from '../Home';
 
@@ -19,6 +20,16 @@ const LIST_PRODUCT = [
         price: 17000,
         namegroup: 'thuocroiloantiendinh',
         nametitle: 'THUỐC RỐI LOẠN TIỀN ĐÌNH',
+        detalsproduct: 'Giảm chóng mặt ngay tức thì ...',
+    },
+    {
+        img: 'https://images.foody.vn/res/g11/102018/s120x120/2018813151644-bio-accimingold.jpg',
+        nameproduct: 'Thuốc trị chóng mặt Taginyl 500mg',
+        countorder: 10,
+        price: 17000,
+        namegroup: 'thuocroiloantiendinh',
+        nametitle: 'THUỐC RỐI LOẠN TIỀN ĐÌNH',
+        detalsproduct: 'Hết đau bụng tức thì ...',
     },
     {
         img: 'https://images.foody.vn/res/g95/947252/s120x120/76ffc88d-251e-4e57-b631-38b8494853a1.jpg',
@@ -37,15 +48,7 @@ const LIST_PRODUCT = [
         nametitle: 'THUỐC RỐI LOẠN TIỀN ĐÌNH',
     },
     {
-        img: 'https://images.foody.vn/res/g95/947252/s120x120/76ffc88d-251e-4e57-b631-38b8494853a1.jpg',
-        nameproduct: 'Thuốc trị chóng mặt Taginyl 500mg',
-        countorder: 10,
-        price: 17000,
-        namegroup: 'thuocroiloantiendinh',
-        nametitle: 'THUỐC RỐI LOẠN TIỀN ĐÌNH',
-    },
-    {
-        img: 'https://images.foody.vn/res/g95/947252/s120x120/76ffc88d-251e-4e57-b631-38b8494853a1.jpg',
+        img: 'https://images.foody.vn/res/g11/102018/s120x120/2018813151644-bio-accimingold.jpg',
         nameproduct: 'Thuốc trị chóng mặt Taginyl 500mg',
         countorder: 10,
         price: 17000,
@@ -86,6 +89,12 @@ function ShopDetals() {
                 break;
         }
     }, []);
+
+    const [isOpen, setIsOpen] = useState(false);
+
+    const handleOpen = () => {
+        setIsOpen(true);
+    };
     return (
         <div className={cx('wrapper')}>
             <div className={cx('detal-shop')}>
@@ -156,7 +165,7 @@ function ShopDetals() {
                         <div className={cx('namegroup')}>THUỐC RỐI LOẠN TIỀN ĐÌNH</div>
                         {LIST_PRODUCT.map((item, index) => (
                             <div>
-                                <ProductItem data={item} key={index} />
+                                <ProductItem data={item} key={index} onClick={handleOpen} />
                             </div>
                         ))}
                     </div>

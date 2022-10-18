@@ -3,6 +3,7 @@ import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
+import { USER_INFO } from '../SidebarUser';
 import UserPopper from '../UserPopper';
 
 import styles from './Header.module.scss';
@@ -29,10 +30,7 @@ function Header() {
                     {USER ? (
                         <div className={cx('user')}>
                             <UserPopper>
-                                <img
-                                    src="https://avatars.githubusercontent.com/u/100254753?v=4"
-                                    className={cx('avt-user')}
-                                />
+                                <img src={USER_INFO.avt} className={cx('avt-user')} />
                             </UserPopper>
                         </div>
                     ) : (

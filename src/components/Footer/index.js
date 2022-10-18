@@ -7,7 +7,7 @@ const cx = classNames.bind(styles);
 function Footer() {
     return (
         <div className={cx('wrapper')}>
-            <div className={cx('inner')}>Copyright &copy; 2022 Shopee Thuốc</div>
+            <div className={cx('inner')}>Copyright &copy; 2022 Drug Store</div>
         </div>
     );
 }

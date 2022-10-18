@@ -8,8 +8,8 @@ import styles from './SidebarUser.module.scss';
 
 const cx = classNames.bind(styles);
 
-const USER_INFO = {
-    avt: 'https://avatars.githubusercontent.com/u/100254753?v=4',
+export const USER_INFO = {
+    avt: 'https://upload.wikimedia.org/wikipedia/vi/1/1d/Manchester_City_FC_logo.svg',
     username: 'lenghia1007',
 };
 

@@ -1,17 +1,24 @@
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames/bind';
+import { useState } from 'react';
+import Modal from '../Modal';
 
 import styles from './ProductItem.module.scss';
 
 const cx = classNames.bind(styles);
 
-function ProductItem({ data }) {
+function ProductItem({ data, onClick }) {
+    const [isOpen, setIsOpen] = useState(false);
+
+    const handleOpen = () => {
+        setIsOpen(true);
+    };
     return (
         <div className={cx('wrapper')}>
             <div className={cx('inner')}>
                 <div className={cx('inner-left')}>
-                    <div className={cx('img')}>
+                    <div className={cx('img')} onClick={handleOpen}>
                         <img className={cx('shop-img')} src={data.img} />
                     </div>
                     <div className={cx('title')}>
@@ -39,6 +46,7 @@ function ProductItem({ data }) {
                         <FontAwesomeIcon icon={faPlus} />
                     </div>
                 </div>
+                {isOpen && <Modal onOpen={setIsOpen} data={data} />}
             </div>
         </div>
     );
