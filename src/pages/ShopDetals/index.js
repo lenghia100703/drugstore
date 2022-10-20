@@ -12,10 +12,11 @@ const cx = classNames.bind(styles);
 
 const data = LIST_SHOP_NEAR_ME[0];
 
-const LIST_PRODUCT = [
+export const LIST_PRODUCT = [
     {
         img: 'https://images.foody.vn/res/g95/947252/s120x120/76ffc88d-251e-4e57-b631-38b8494853a1.jpg',
         nameproduct: 'Thuốc trị chóng mặt Taginyl 500mg',
+        nameshop: 'Nhà Thuốc EcoPharmaceuticals',
         countorder: 10,
         price: 17000,
         namegroup: 'thuocroiloantiendinh',
@@ -25,6 +26,7 @@ const LIST_PRODUCT = [
     {
         img: 'https://images.foody.vn/res/g11/102018/s120x120/2018813151644-bio-accimingold.jpg',
         nameproduct: 'Thuốc trị chóng mặt Taginyl 500mg',
+        nameshop: 'Nhà Thuốc EcoPharmaceuticals',
         countorder: 10,
         price: 17000,
         namegroup: 'thuocroiloantiendinh',
@@ -34,6 +36,7 @@ const LIST_PRODUCT = [
     {
         img: 'https://images.foody.vn/res/g95/947252/s120x120/76ffc88d-251e-4e57-b631-38b8494853a1.jpg',
         nameproduct: 'Thuốc trị chóng mặt Taginyl 500mg',
+        nameshop: 'Nhà Thuốc EcoPharmaceuticals',
         countorder: 10,
         price: 17000,
         namegroup: 'thuocroiloantiendinh',
@@ -42,6 +45,7 @@ const LIST_PRODUCT = [
     {
         img: 'https://images.foody.vn/res/g95/947252/s120x120/76ffc88d-251e-4e57-b631-38b8494853a1.jpg',
         nameproduct: 'Thuốc trị chóng mặt Taginyl 500mg',
+        nameshop: 'Nhà Thuốc EcoPharmaceuticals',
         countorder: 10,
         price: 17000,
         namegroup: 'thuocroiloantiendinh',
@@ -50,6 +54,7 @@ const LIST_PRODUCT = [
     {
         img: 'https://images.foody.vn/res/g11/102018/s120x120/2018813151644-bio-accimingold.jpg',
         nameproduct: 'Thuốc trị chóng mặt Taginyl 500mg',
+        nameshop: 'Nhà Thuốc EcoPharmaceuticals',
         countorder: 10,
         price: 17000,
         namegroup: 'thuocroiloantiendinh',

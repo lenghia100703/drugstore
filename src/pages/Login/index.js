@@ -1,6 +1,7 @@
 import { faUser } from '@fortawesome/free-regular-svg-icons';
 import { faLock, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import axios from 'axios';
 import classNames from 'classnames/bind';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -19,7 +20,17 @@ function Login() {
         if (username == '' || password == '') {
             alert('Please enter a username and password');
         }
-        alert(`username: ${username}, password: ${password}`);
+        axios
+            .post('http://localhost:8083/api/v1/user/login', {
+                username: username,
+                password: password,
+            })
+            .then((result) => {
+                console.log(result.data);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
         e.preventDefault();
     };
     return (

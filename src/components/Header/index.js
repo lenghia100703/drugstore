@@ -3,6 +3,7 @@ import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
+import NotiPopper from '../NotiPopper';
 import { USER_INFO } from '../SidebarUser';
 import UserPopper from '../UserPopper';
 
@@ -24,11 +25,13 @@ function Header() {
                     </div>
                 </div>
                 <div className={cx('right')}>
-                    <div className={cx('icon-search')}>
-                        <FontAwesomeIcon icon={faBell} />
-                    </div>
                     {USER ? (
                         <div className={cx('user')}>
+                            <NotiPopper>
+                                <div className={cx('icon-search')}>
+                                    <FontAwesomeIcon icon={faBell} />
+                                </div>
+                            </NotiPopper>
                             <UserPopper>
                                 <img src={USER_INFO.avt} className={cx('avt-user')} />
                             </UserPopper>

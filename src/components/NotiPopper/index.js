@@ -1,0 +1,93 @@
+import { faCircle } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import classNames from 'classnames/bind';
+import { Link } from 'react-router-dom';
+import HeadlessTippy from '@tippyjs/react/headless';
+
+import styles from './NotiPopper.module.scss';
+import { useState } from 'react';
+import NotiItem from './NotiItem';
+
+const cx = classNames.bind(styles);
+
+const NOTIUSER_POPPER = [
+    {
+        title: 'Đơn hàng 14141-1231241 đã đặt thành công',
+        id: 14141 - 1231241,
+        time: 1,
+        read: false,
+        icon: <FontAwesomeIcon icon={faCircle} />,
+        to: '/history-order',
+    },
+    {
+        title: 'Đơn hàng 64141-9432953 đã đặt thành công',
+        id: 64141 - 9432953,
+        time: 2,
+        read: true,
+        icon: <FontAwesomeIcon icon={faCircle} />,
+        to: '/history-order',
+    },
+    {
+        title: 'Đơn hàng 10350-1293910 đã đặt thành công',
+        id: 10350 - 1293910,
+        time: 12,
+        read: true,
+        icon: <FontAwesomeIcon icon={faCircle} />,
+        to: '/history-order',
+    },
+];
+
+const NOTISHIPPER_POPPER = [
+    {
+        title: 'Đơn hàng 14141-1231241 đã giao thành công',
+        id: 14141 - 1231241,
+        time: 1,
+        read: false,
+        icon: <FontAwesomeIcon icon={faCircle} />,
+        to: '/my-list-order',
+    },
+    {
+        title: 'Đơn hàng 64141-9432953 đã giao thành công',
+        id: 64141 - 9432953,
+        time: 2,
+        read: true,
+        icon: <FontAwesomeIcon icon={faCircle} />,
+        to: '/my-list-order',
+    },
+    {
+        title: 'Đơn hàng 10350-1293910 đã giao thành công',
+        id: 10350 - 1293910,
+        time: 12,
+        read: true,
+        icon: <FontAwesomeIcon icon={faCircle} />,
+        to: '/my-list-order',
+    },
+];
+
+function NotiPopper({ children }) {
+    return (
+        <HeadlessTippy
+            placement="bottom-end"
+            interactive
+            render={(attrs) => (
+                <div className={cx('menu-list')} tabIndex="-1" {...attrs}>
+                    <div className={cx('menu-popper')}>
+                        <div className={cx('header')}>
+                            <h3>Thông báo</h3>
+                        </div>
+                        <div className={cx('menu-body')}>
+                            {NOTISHIPPER_POPPER.map((item, index) => (
+                                <NotiItem key={index} item={item} />
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            )}
+            trigger="click"
+        >
+            {children}
+        </HeadlessTippy>
+    );
+}
+
+export default NotiPopper;

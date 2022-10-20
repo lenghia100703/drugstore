@@ -33,9 +33,32 @@ const USER_POPPER = [
     },
 ];
 
+const SHIPPER_POPPER = [
+    {
+        to: '/user',
+        icon: <FontAwesomeIcon icon={faUser} />,
+        title: 'Xem hồ sơ',
+    },
+    {
+        to: '/list-order',
+        icon: <FontAwesomeIcon icon={faCartShopping} />,
+        title: 'Danh sách đặt hàng',
+    },
+    {
+        to: '/my-list-order',
+        icon: <FontAwesomeIcon icon={faCartShopping} />,
+        title: 'Danh sách đặt hàng của tôi',
+    },
+    {
+        icon: <FontAwesomeIcon icon={faArrowRightFromBracket} />,
+        title: 'Đăng xuất',
+        separate: true,
+    },
+];
+
 function UserPopper({ children }) {
     const renderItems = () => {
-        return USER_POPPER.map((item, index) => {
+        return SHIPPER_POPPER.map((item, index) => {
             return (
                 <div
                     className={cx('menu-item', {

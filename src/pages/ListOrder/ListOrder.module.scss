@@ -22,13 +22,13 @@
 .rows-1 {
     display: grid;
     border-bottom: 1px solid rgba(22, 24, 35, 0.12);
-    grid-template-columns: 4.77% 14.19% 17.61% 24.29% 10% 9.05% 11.62% 8.47%;
+    grid-template-columns: 3.77% 12.19% 9.61% 20.29% 19% 9.05% 9.62% 8.47% 8%;
 }
 
 .rows-2 {
     display: grid;
     border-bottom: 1px solid rgba(22, 24, 35, 0.12);
-    grid-template-columns: 4.77% 14.19% 17.61% 24.29% 10% 9.05% 11.62% 8.47%;
+    grid-template-columns: 3.77% 12.19% 9.61% 20.29% 19% 9.05% 9.62% 8.47% 8%;
     padding: 10px 0 10px 0;
 }
 
@@ -67,6 +67,10 @@
 }
 
 .col-8 {
+    text-align: center;
+}
+
+.col-9 {
     text-align: center;
 }
 

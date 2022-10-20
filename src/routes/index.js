@@ -5,7 +5,9 @@ import Address from '../pages/Address';
 import Cart from '../pages/Cart';
 import HistoryOrder from '../pages/HistoryOrder';
 import Home from '../pages/Home';
+import ListOrder from '../pages/ListOrder';
 import Login from '../pages/Login';
+import MyListOrder from '../pages/MyListOrder';
 import Password from '../pages/Password';
 import Profile from '../pages/Profile';
 import Register from '../pages/Register';
@@ -21,6 +23,8 @@ const publicRoutes = [
     { path: '/cart', components: Cart, layout: CartLayout },
     { path: '/history-order', components: HistoryOrder, layout: DefaultLayout },
     { path: '/nha-thuoc-ecopharmaceuticals', components: ShopDetals, layout: DefaultLayout },
+    { path: '/list-order', components: ListOrder, layout: DefaultLayout },
+    { path: '/my-list-order', components: MyListOrder, layout: DefaultLayout },
 ];
 
 const privateRoutes = [];

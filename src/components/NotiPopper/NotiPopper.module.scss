@@ -1,6 +1,6 @@
 .menu-list {
     height: 100%;
-    width: 105%;
+    width: 100%;
     position: relative;
     line-height: 22px;
     padding: 8px 0px;
@@ -55,6 +55,29 @@
 }
 
 .icon-item {
-    margin-right: 8px;
-    font-size: 20px;
+    display: flex;
+    margin-left: 12px;
+    font-size: 10px;
+    color: #1a73e8;
+}
+
+.read {
+    color: #1a73e8;
+}
+
+.unread {
+    color: #65676b;
+}
+
+.primary {
+    color: black;
+}
+
+.time {
+    font-size: 12px;
+}
+
+.header {
+    padding: 3px 7px;
+    margin-left: 8px;
 }

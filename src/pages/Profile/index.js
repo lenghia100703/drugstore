@@ -53,17 +53,9 @@ function Profile() {
                         spellCheck={false}
                     />
                 </div>
-                <div className={cx('birthday')}>
-                    <div className={cx('title')}>Ngày sinh</div>
-                    <select id="day" name="day" className={cx('select-birthday')}>
-                        <option>1</option>
-                    </select>
-                    <select id="month" name="month" className={cx('select-birthday')}>
-                        <option>January</option>
-                    </select>
-                    <select id="year" name="year" className={cx('select-birthday')}>
-                        <option>2000</option>
-                    </select>
+                <div className={cx('role')}>
+                    <div className={cx('title')}>Vai trò</div>
+                    <div style={{ color: 'gray' }}>Khách hàng</div>
                 </div>
                 <div className={cx('save')}>
                     <button className={cx('save-btn')}>Lưu</button>

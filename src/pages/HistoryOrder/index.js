@@ -1,5 +1,8 @@
 import classNames from 'classnames/bind';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import BillModal from '../../components/BillModal';
+import HistoryItem from '../../components/HistoryItem';
 
 import styles from './HistoryOrder.module.scss';
 
@@ -11,32 +14,21 @@ const DATA_ORDER = [
         orderedTime: '24/09/2022 11:45',
         deliveredTime: '14/10/2022 12:40',
         nameshop: 'Nhà Thuốc EcoPharmaceuticals',
+        countOfProduct: 2,
+        listOfProducts: [
+            {
+                nameproduct: 'Thuốc đau đầu',
+                countOfItems: 2,
+                totalCost: 73000,
+            },
+            {
+                nameproduct: 'Men tiêu hóa',
+                countOfItems: 1,
+                totalCost: 60000,
+            },
+        ],
         address: '33 Lê Ngã, P. Phú Trung, Tân Phú, TP. HCM',
         shipper: 'Tạ Đức Mạnh',
-        totalCost: 73000,
-        countOfItems: 2,
-        status: true,
-    },
-    {
-        id: '14233-3192391',
-        orderedTime: '10/09/2022 11:45',
-        deliveredTime: '11/9/2022 12:40',
-        nameshop: 'Nhà Thuốc EcoPharmaceuticals',
-        address: '33 Lê Ngã, P. Phú Trung, Tân Phú, TP. HCM',
-        shipper: 'Tiên Minh Hòa',
-        totalCost: 55000,
-        countOfItems: 1,
-        status: true,
-    },
-    {
-        id: '19832-1329421',
-        orderedTime: '10/10/2022 13:45',
-        deliveredTime: '11/10/2022 4:40',
-        nameshop: 'Nhà Thuốc EcoPharmaceuticals',
-        address: '33 Lê Ngã, P. Phú Trung, Tân Phú, TP. HCM',
-        shipper: 'Nguyễn Đức Minh',
-        totalCost: 60000,
-        countOfItems: 2,
         status: true,
     },
     {
@@ -44,32 +36,21 @@ const DATA_ORDER = [
         orderedTime: '24/09/2022 11:45',
         deliveredTime: '14/10/2022 12:40',
         nameshop: 'Nhà Thuốc EcoPharmaceuticals',
-        address: '33 Lê Ngã, P. Phú Trung, Tân Phú, TP. HCM',
-        shipper: 'Tạ Đức Mạnh',
-        totalCost: 73000,
-        countOfItems: 2,
-        status: true,
-    },
-    {
-        id: '14233-3192391',
-        orderedTime: '10/09/2022 11:45',
-        deliveredTime: '11/9/2022 12:40',
-        nameshop: 'Nhà Thuốc EcoPharmaceuticals',
+        countOfProduct: 2,
+        listOfProducts: [
+            {
+                nameproduct: 'Thuốc đau đầu',
+                countOfItems: 2,
+                totalCost: 73000,
+            },
+            {
+                nameproduct: 'Men tiêu hóa',
+                countOfItems: 2,
+                totalCost: 100000,
+            },
+        ],
         address: '33 Lê Ngã, P. Phú Trung, Tân Phú, TP. HCM',
         shipper: 'Tiên Minh Hòa',
-        totalCost: 55000,
-        countOfItems: 1,
-        status: true,
-    },
-    {
-        id: '19832-1329421',
-        orderedTime: '10/10/2022 13:45',
-        deliveredTime: '11/10/2022 4:40',
-        nameshop: 'Nhà Thuốc EcoPharmaceuticals',
-        address: '33 Lê Ngã, P. Phú Trung, Tân Phú, TP. HCM',
-        shipper: 'Nguyễn Đức Minh',
-        totalCost: 60000,
-        countOfItems: 2,
         status: true,
     },
     {
@@ -77,37 +58,37 @@ const DATA_ORDER = [
         orderedTime: '24/09/2022 11:45',
         deliveredTime: '14/10/2022 12:40',
         nameshop: 'Nhà Thuốc EcoPharmaceuticals',
-        address: '33 Lê Ngã, P. Phú Trung, Tân Phú, TP. HCM',
-        shipper: 'Tạ Đức Mạnh',
-        totalCost: 73000,
-        countOfItems: 2,
-        status: true,
-    },
-    {
-        id: '14233-3192391',
-        orderedTime: '10/09/2022 11:45',
-        deliveredTime: '11/9/2022 12:40',
-        nameshop: 'Nhà Thuốc EcoPharmaceuticals',
-        address: '33 Lê Ngã, P. Phú Trung, Tân Phú, TP. HCM',
-        shipper: 'Tiên Minh Hòa',
-        totalCost: 55000,
-        countOfItems: 1,
-        status: true,
-    },
-    {
-        id: '19832-1329421',
-        orderedTime: '10/10/2022 13:45',
-        deliveredTime: '11/10/2022 4:40',
-        nameshop: 'Nhà Thuốc EcoPharmaceuticals',
+        countOfProduct: 2,
+        listOfProducts: [
+            {
+                nameproduct: 'Thuốc đau đầu',
+                countOfItems: 2,
+                totalCost: 73000,
+            },
+            {
+                nameproduct: 'Men tiêu hóa',
+                countOfItems: 1,
+                totalCost: 60000,
+            },
+            {
+                nameproduct: 'Thuốc ho',
+                countOfItems: 1,
+                totalCost: 100000,
+            },
+        ],
         address: '33 Lê Ngã, P. Phú Trung, Tân Phú, TP. HCM',
         shipper: 'Nguyễn Đức Minh',
-        totalCost: 60000,
-        countOfItems: 2,
         status: true,
     },
 ];
 
 function HistoryOrder() {
+    const [isOpen, setIsOpen] = useState(false);
+
+    const handleOpen = () => {
+        setIsOpen(true);
+    };
+
     return (
         <div className={cx('wrapper')}>
             <h1 className={cx('title')}>Lịch sử đơn hàng</h1>
@@ -121,34 +102,12 @@ function HistoryOrder() {
                         <div className={cx('col-5', 'col')}>Shipper</div>
                         <div className={cx('col-6', 'col')}>Tổng tiền</div>
                         <div className={cx('col-7', 'col')}>Trạng thái</div>
+                        <div className={cx('col-8', 'col')}>Chi tiết</div>
                     </div>
                 </div>
                 <div className={cx('table-address-body')}>
                     {DATA_ORDER.map((item, index) => (
-                        <div className={cx('rows-2')} key={index}>
-                            <div className={cx('col-1', 'col')}>{index + 1}</div>
-                            <div className={cx('col-2', 'col')}>{item.id}</div>
-                            <div className={cx('col-3', 'col')}>
-                                <div>Thời gian đặt: {item.orderedTime}</div>
-                                <div>Thời gian giao: {item.deliveredTime}</div>
-                            </div>
-                            <Link to={'/nha-thuoc-ecopharmaceuticals'} className={cx('col-4', 'col')}>
-                                <div style={{ fontWeight: 700 }}>{item.nameshop}</div>
-                                <div>{item.address}</div>
-                            </Link>
-                            <div className={cx('col-5', 'col')}>{item.shipper}</div>
-                            <div className={cx('col-6', 'col')}>
-                                <div>{item.totalCost}đ</div>
-                                <div>{item.countOfItems} items</div>
-                            </div>
-                            <div className={cx('col-7', 'col')}>
-                                {item.status ? (
-                                    <div className={cx('complete')}>Complete</div>
-                                ) : (
-                                    <div className={cx('incomplete')}>Fail</div>
-                                )}
-                            </div>
-                        </div>
+                        <HistoryItem data={item} key={index} count={index} onClick={handleOpen} />
                     ))}
                 </div>
             </div>

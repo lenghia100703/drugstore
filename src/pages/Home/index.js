@@ -304,6 +304,12 @@ function Home() {
     const [show3, setShow3] = useState(false);
     const [show4, setShow4] = useState(false);
 
+    const [visible, setVisible] = useState(5);
+
+    const handleMore = () => {
+        setVisible((prev) => prev + 5);
+    };
+
     return (
         <div className={cx('wrapper')}>
             <div className={cx('inner')}>
@@ -385,12 +391,24 @@ function Home() {
                                     <option>Quận 5</option>
                                 </select>
                             </div>
-                            {show1 && LIST_SHOP_NEAR_ME.map((item, index) => <ShopItem data={item} key={index} />)}
-                            {show2 && LIST_SHOP_ORDER_LOT.map((item, index) => <ShopItem data={item} key={index} />)}
-                            {show3 && LIST_SHOP_JUST_ORDER.map((item, index) => <ShopItem data={item} key={index} />)}
-                            {show4 && LIST_SHOP_FEATURED.map((item, index) => <ShopItem data={item} key={index} />)}
+                            {show1 &&
+                                LIST_SHOP_NEAR_ME.slice(0, visible).map((item, index) => (
+                                    <ShopItem data={item} key={index} />
+                                ))}
+                            {show2 &&
+                                LIST_SHOP_ORDER_LOT.slice(0, visible).map((item, index) => (
+                                    <ShopItem data={item} key={index} />
+                                ))}
+                            {show3 &&
+                                LIST_SHOP_JUST_ORDER.slice(0, visible).map((item, index) => (
+                                    <ShopItem data={item} key={index} />
+                                ))}
+                            {show4 &&
+                                LIST_SHOP_FEATURED.slice(0, visible).map((item, index) => (
+                                    <ShopItem data={item} key={index} />
+                                ))}
                             <div className={cx('more')}>
-                                <button className={cx('more-btn')}>
+                                <button className={cx('more-btn')} onClick={handleMore}>
                                     Xem thêm
                                     <span style={{ marginLeft: 4 }}>
                                         <FontAwesomeIcon icon={faRotateRight} />
