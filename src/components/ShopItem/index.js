@@ -12,18 +12,12 @@ function ShopItem({ data }) {
         <div className={cx('wrapper')}>
             <Link className={cx('inner')} to={data.to}>
                 <div className={cx('img')}>
-                    <img src={data.img} className={cx('shop-img')} />
+                    <img src={data.medicalShopUrlImage} className={cx('shop-img')} />
                 </div>
                 <div className={cx('title')}>
-                    <div className={cx('name-shop')}>{data.nameshop}</div>
-                    <div className={cx('count-shop-place')}>
-                        <span>{data.countshopplace} địa điểm</span>
-                    </div>
-                    <div className={cx('shop-info')}>
-                        <FontAwesomeIcon icon={faTag} style={{ fontSize: 18, marginRight: 10 }} />
-                        <span style={{ marginRight: 10 }}>Tối thiểu {data.lowestprice}k</span>
-                        <FontAwesomeIcon icon={faCoins} style={{ fontSize: 18, marginRight: 10 }} />
-                        <span>Giá {data.price}k</span>
+                    <div className={cx('name-shop')}>{data.medicalShopName}</div>
+                    <div className={cx('shop-address')}>
+                        <span>{data.detailAddress}</span>
                     </div>
                     <span className={cx('kind-shop')}>{data.kindshop}</span>
                 </div>

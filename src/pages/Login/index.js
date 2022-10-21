@@ -10,8 +10,8 @@ import styles from './Login.module.scss';
 
 const cx = classNames.bind(styles);
 
-export const userLogin = '';
-export const passLogin = '';
+export let userLogin = '';
+export let passLogin = '';
 
 function Login() {
     const [username, setUsername] = useState('');

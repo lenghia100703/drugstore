@@ -2,10 +2,12 @@ import { faMagnifyingGlass, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import HeadlessTippy from '@tippyjs/react/headless';
 import classNames from 'classnames/bind';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import styles from './Search.module.scss';
 import SearchItem from './SearchItem';
+import useDebounce from '../../hooks/useDebounce';
+import request from '../../api/axios';
 
 const cx = classNames.bind(styles);
 
@@ -49,7 +51,10 @@ const ITEMS = [
 
 function Search() {
     const [searchValue, setSearchValue] = useState('');
+    const [searchResult, setSearchResult] = useState([]);
     const [showResults, setShowResults] = useState(true);
+    const [loading, setLoading] = useState(false);
+    const debounced = useDebounce(searchValue, 500);
     const searchRef = useRef();
 
     const handleSearch = (e) => {
@@ -61,15 +66,34 @@ function Search() {
         searchRef.current.focus();
     };
 
+    useEffect(() => {
+        if (!debounced.trim()) {
+            setSearchResult([]);
+            return;
+        }
+        setLoading(true);
+        request
+            .get('medical-shop/search', {
+                params: {
+                    searchParam: debounced,
+                },
+            })
+            .then((res) => {
+                console.log(res.data);
+                setSearchResult(res.data);
+                setLoading(false);
+            });
+    }, [debounced]);
+
     return (
         <HeadlessTippy
             placement="bottom"
             interactive={true}
             offset={[0, 0]}
-            visible={searchValue.length > 0 && showResults}
+            visible={searchResult.length > 0 && showResults}
             render={(attrs) => (
                 <div tabIndex="-1" {...attrs} className={cx('wrapper-popper')}>
-                    {ITEMS.map((item, index) => (
+                    {searchResult.slice(0, 5).map((item, index) => (
                         <SearchItem key={index} data={item} />
                     ))}
                 </div>
@@ -85,7 +109,7 @@ function Search() {
                     placeholder="Tìm nhà thuốc, cửa hàng hóa mỹ phẩm..."
                     className={cx('input-search')}
                 />
-                {searchValue.length > 0 && (
+                {!!searchValue && !loading && (
                     <button className={cx('clear')} onClick={handleClear}>
                         <FontAwesomeIcon icon={faXmark} />
                     </button>

@@ -13,11 +13,11 @@ function SearchItem({ data }) {
             <Link to={data.to} className={cx('inner')}>
                 <div className={cx('inner-left')}>
                     <div className={cx('img')}>
-                        <img src={data.img} className={cx('shop-img')} />
+                        <img src={data.medicalShopUrlImage} className={cx('shop-img')} />
                     </div>
                     <div className={cx('title')}>
-                        <div className={cx('name-shop')}>{data.nameshop}</div>
-                        <div className={cx('address-shop')}>{data.address}</div>
+                        <div className={cx('name-shop')}>{data.medicalShopName}</div>
+                        <div className={cx('address-shop')}>{data.detailAddress}</div>
                     </div>
                 </div>
                 <div className={cx('inner-right')}>

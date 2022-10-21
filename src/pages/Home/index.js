@@ -6,6 +6,7 @@ import Search from '../../components/Search';
 import ShopItem from '../../components/ShopItem';
 
 import styles from './Home.module.scss';
+import request from '../../api/axios';
 
 const cx = classNames.bind(styles);
 
@@ -304,11 +305,19 @@ function Home() {
     const [show3, setShow3] = useState(false);
     const [show4, setShow4] = useState(false);
 
+    const [shopNearMe, setShopNearMe] = useState([]);
+
     const [visible, setVisible] = useState(5);
 
     const handleMore = () => {
         setVisible((prev) => prev + 5);
     };
+
+    useEffect(() => {
+        request.get('medical-shop/list').then((res) => {
+            setShopNearMe(res.data);
+        });
+    }, [shopNearMe]);
 
     return (
         <div className={cx('wrapper')}>
@@ -392,21 +401,13 @@ function Home() {
                                 </select>
                             </div>
                             {show1 &&
-                                LIST_SHOP_NEAR_ME.slice(0, visible).map((item, index) => (
-                                    <ShopItem data={item} key={index} />
-                                ))}
+                                shopNearMe.slice(0, visible).map((item, index) => <ShopItem data={item} key={index} />)}
                             {show2 &&
-                                LIST_SHOP_ORDER_LOT.slice(0, visible).map((item, index) => (
-                                    <ShopItem data={item} key={index} />
-                                ))}
+                                shopNearMe.slice(0, visible).map((item, index) => <ShopItem data={item} key={index} />)}
                             {show3 &&
-                                LIST_SHOP_JUST_ORDER.slice(0, visible).map((item, index) => (
-                                    <ShopItem data={item} key={index} />
-                                ))}
+                                shopNearMe.slice(0, visible).map((item, index) => <ShopItem data={item} key={index} />)}
                             {show4 &&
-                                LIST_SHOP_FEATURED.slice(0, visible).map((item, index) => (
-                                    <ShopItem data={item} key={index} />
-                                ))}
+                                shopNearMe.slice(0, visible).map((item, index) => <ShopItem data={item} key={index} />)}
                             <div className={cx('more')}>
                                 <button className={cx('more-btn')} onClick={handleMore}>
                                     Xem thêm
