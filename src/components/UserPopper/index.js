@@ -58,7 +58,7 @@ const SHIPPER_POPPER = [
 
 function UserPopper({ children }) {
     const renderItems = () => {
-        return SHIPPER_POPPER.map((item, index) => {
+        return USER_POPPER.map((item, index) => {
             return (
                 <div
                     className={cx('menu-item', {

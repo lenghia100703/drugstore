@@ -76,7 +76,7 @@ function NotiPopper({ children }) {
                             <h3>Thông báo</h3>
                         </div>
                         <div className={cx('menu-body')}>
-                            {NOTISHIPPER_POPPER.map((item, index) => (
+                            {NOTIUSER_POPPER.map((item, index) => (
                                 <NotiItem key={index} item={item} />
                             ))}
                         </div>
