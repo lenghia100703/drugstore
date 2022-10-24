@@ -1,20 +1,26 @@
 import classNames from 'classnames/bind';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import BillModal from '../BillModal';
 
 import styles from './HistoryItem.module.scss';
+import BillModal from '../BillModal';
+import RatingModal from '../RatingModal';
 
 const cx = classNames.bind(styles);
 
 function HistoryItem({ data, count }) {
-    const [isOpen, setIsOpen] = useState(false);
+    const [billOpen, setBillOpen] = useState(false);
+    const [ratingOpen, setRatingOpen] = useState(false);
 
     const [totalCost, setTotalCost] = useState(0);
     const [countOfItems, setCountOfItems] = useState(0);
 
-    const handleOpen = () => {
-        setIsOpen(true);
+    const handleBillOpen = () => {
+        setBillOpen(true);
+    };
+
+    const handleRatingOpen = () => {
+        setRatingOpen(true);
     };
 
     useEffect(() => {
@@ -39,14 +45,19 @@ function HistoryItem({ data, count }) {
             <div className={cx('col-1', 'col')}>{count + 1}</div>
             <div className={cx('col-2', 'col')}>{data.id}</div>
             <div className={cx('col-3', 'col')}>
-                <div>Thời gian đặt: {data.orderedTime}</div>
-                <div>Thời gian giao: {data.deliveredTime}</div>
+                <div>Order Time: {data.orderedTime}</div>
+                <div>Delivery Time: {data.deliveredTime}</div>
             </div>
             <Link to={'/nha-thuoc-ecopharmaceuticals'} className={cx('col-4', 'col')}>
                 <div style={{ fontWeight: 700 }}>{data.nameshop}</div>
                 <div>{data.address}</div>
             </Link>
-            <div className={cx('col-5', 'col')}>{data.shipper}</div>
+            <div className={cx('col-5', 'col')}>
+                <div>{data.shipper}</div>
+                <div onClick={handleRatingOpen} style={{ color: 'blue', cursor: 'pointer' }}>
+                    Rate
+                </div>
+            </div>
             <div className={cx('col-6', 'col')}>
                 <div>{totalCost}đ</div>
                 <div>{countOfItems} items</div>
@@ -59,11 +70,12 @@ function HistoryItem({ data, count }) {
                 )}
             </div>
             <div className={cx('col-8', 'col')}>
-                <span style={{ color: 'blue', cursor: 'pointer' }} onClick={handleOpen}>
-                    Xem chi tiết
+                <span style={{ color: 'blue', cursor: 'pointer' }} onClick={handleBillOpen}>
+                    View details
                 </span>
             </div>
-            {isOpen && <BillModal onOpen={setIsOpen} data={data} />}
+            {billOpen && <BillModal onOpen={setBillOpen} data={data} />}
+            {ratingOpen && <RatingModal onOpen={setRatingOpen} data={data} />}
         </div>
     );
 }

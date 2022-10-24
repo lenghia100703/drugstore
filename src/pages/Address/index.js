@@ -8,14 +8,14 @@ function Address() {
     return (
         <div className={cx('wrapper')}>
             <div className={cx('header')}>
-                <h3>Cập nhật địa chỉ</h3>
+                <h3>Update Address</h3>
             </div>
             <div className={cx('table-address')}>
                 <div className={cx('table-address-header')}>
                     <div className={cx('rows')}>
-                        <div className={cx('col-1')}>Tên gợi nhớ</div>
-                        <div className={cx('col-2')}>Địa chỉ</div>
-                        <div className={cx('col-3')}>Số điện thoại</div>
+                        <div className={cx('col-1')}>Name reminiscent</div>
+                        <div className={cx('col-2')}>Address</div>
+                        <div className={cx('col-3')}>Phone</div>
                         <div className={cx('col-4')}></div>
                     </div>
                 </div>

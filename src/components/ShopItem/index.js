@@ -1,5 +1,3 @@
-import { faCoins, faTag } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
 
@@ -10,7 +8,7 @@ const cx = classNames.bind(styles);
 function ShopItem({ data }) {
     return (
         <div className={cx('wrapper')}>
-            <Link className={cx('inner')} to={data.to}>
+            <Link className={cx('inner')} to={`/medical-shop/${data.medicalShopId}`}>
                 <div className={cx('img')}>
                     <img src={data.medicalShopUrlImage} className={cx('shop-img')} />
                 </div>

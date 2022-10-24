@@ -1,35 +1,30 @@
-import { faCircle } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames/bind';
-import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircle } from '@fortawesome/free-solid-svg-icons';
 import HeadlessTippy from '@tippyjs/react/headless';
 
 import styles from './NotiPopper.module.scss';
-import { useState } from 'react';
 import NotiItem from './NotiItem';
 
 const cx = classNames.bind(styles);
 
 const NOTIUSER_POPPER = [
     {
-        title: 'Đơn hàng 14141-1231241 đã đặt thành công',
-        id: 14141 - 1231241,
+        id: '14141 - 1231241',
         time: 1,
         read: false,
         icon: <FontAwesomeIcon icon={faCircle} />,
         to: '/history-order',
     },
     {
-        title: 'Đơn hàng 64141-9432953 đã đặt thành công',
-        id: 64141 - 9432953,
+        id: '64141 - 9432953',
         time: 2,
         read: true,
         icon: <FontAwesomeIcon icon={faCircle} />,
         to: '/history-order',
     },
     {
-        title: 'Đơn hàng 10350-1293910 đã đặt thành công',
-        id: 10350 - 1293910,
+        id: '10350 - 1293910',
         time: 12,
         read: true,
         icon: <FontAwesomeIcon icon={faCircle} />,
@@ -73,7 +68,7 @@ function NotiPopper({ children }) {
                 <div className={cx('menu-list')} tabIndex="-1" {...attrs}>
                     <div className={cx('menu-popper')}>
                         <div className={cx('header')}>
-                            <h3>Thông báo</h3>
+                            <h3>Notifications</h3>
                         </div>
                         <div className={cx('menu-body')}>
                             {NOTIUSER_POPPER.map((item, index) => (

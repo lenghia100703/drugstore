@@ -1,10 +1,8 @@
-import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames/bind';
 import { useState } from 'react';
-import CartItem from '../../components/CartItem';
 
 import styles from './Cart.module.scss';
+import CartItem from '../../components/CartItem';
 
 const cx = classNames.bind(styles);
 
@@ -81,17 +79,17 @@ function Cart() {
 
     return (
         <div className={cx('wrapper')}>
-            <h1 className={cx('title')}>Giỏ hàng</h1>
+            <h1 className={cx('title')}>Shopping Cart</h1>
             <div className={cx('body')}>
                 <div className={cx('table-product-header')}>
                     <div className={cx('rows-1')}>
                         <div className={cx('col-5', 'col')}>
                             <input type="checkbox" />
                         </div>
-                        <div className={cx('col-1', 'col')}>Sản phẩm</div>
-                        <div className={cx('col-2', 'col')}>Số lượng</div>
-                        <div className={cx('col-3', 'col')}>Số tiền</div>
-                        <div className={cx('col-4', 'col')}>Thao tác</div>
+                        <div className={cx('col-1', 'col')}>Product</div>
+                        <div className={cx('col-2', 'col')}>Quantity</div>
+                        <div className={cx('col-3', 'col')}>Total Price</div>
+                        <div className={cx('col-4', 'col')}>Actions</div>
                     </div>
                 </div>
                 <div className={cx('table-product-body')}>
@@ -101,10 +99,10 @@ function Cart() {
                 </div>
                 <div className={cx('pay')}>
                     <span style={{ marginLeft: 22 }}>
-                        Tổng thanh toán (<span>{totalProduct}</span> sản phẩm)
+                        Total (<span>{totalProduct}</span> item)
                     </span>
                     <span>
-                        <button className={cx('pay-btn')}>Mua hàng</button>
+                        <button className={cx('pay-btn')}>Check out</button>
                     </span>
                 </div>
             </div>

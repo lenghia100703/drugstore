@@ -1,10 +1,10 @@
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames/bind';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
-import Modal from '../Modal';
 
 import styles from './ProductItem.module.scss';
+import Modal from '../Modal';
 
 const cx = classNames.bind(styles);
 

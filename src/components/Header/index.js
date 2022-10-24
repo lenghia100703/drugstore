@@ -1,13 +1,12 @@
-import { faBell } from '@fortawesome/free-regular-svg-icons';
-import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
-import NotiPopper from '../NotiPopper';
-import { USER_INFO } from '../SidebarUser';
-import UserPopper from '../UserPopper';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBell } from '@fortawesome/free-regular-svg-icons';
 
 import styles from './Header.module.scss';
+import NotiPopper from '../NotiPopper';
+import UserPopper from '../UserPopper';
+import { USER_INFO } from '../SidebarUser';
 
 const cx = classNames.bind(styles);
 
@@ -39,7 +38,7 @@ function Header() {
                     ) : (
                         <div className={cx('login')}>
                             <Link to="/login" className={cx('login-btn')}>
-                                Đăng nhập
+                                Log In
                             </Link>
                         </div>
                     )}

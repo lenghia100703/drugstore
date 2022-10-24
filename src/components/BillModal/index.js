@@ -1,10 +1,7 @@
-import { faXmark } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames/bind';
+import { useEffect, useState } from 'react';
 
 import styles from './BillModal.module.scss';
-import { LIST_PRODUCT } from '../../pages/ShopDetals';
-import { useEffect, useState } from 'react';
 
 const cx = classNames.bind(styles);
 
@@ -38,25 +35,25 @@ function BillModal({ onOpen, data }) {
                                     <>Shipper: {data.shipper}</>
                                 ) : (
                                     <>
-                                        Người nhận: {data.nameCustomer}, SĐT: {data.phoneCustomer}
+                                        Customer: {data.nameCustomer}, Phone: {data.phoneCustomer}
                                     </>
                                 )}
                             </td>
                         </tr>
                         <tr>
-                            <td colSpan={4}>
+                            <td colSpan={4} style={{ textAlign: 'center' }}>
                                 <div style={{ fontWeight: 'bold' }}>{data.nameshop}</div>
                                 <div>{data.address}</div>
                             </td>
                         </tr>
                         <tr>
-                            <td colSpan={4}>Thời gian giao hàng: {data.deliveredTime}</td>
+                            <td colSpan={4}>Delivery Time: {data.deliveredTime}</td>
                         </tr>
                         <tr>
                             <td>No</td>
-                            <td>Sản phẩm</td>
-                            <td>Số lượng</td>
-                            <td style={{ textAlign: 'right' }}>Giá</td>
+                            <td>Product</td>
+                            <td>Quantity</td>
+                            <td style={{ textAlign: 'right' }}>Price</td>
                         </tr>
                         {LIST_OF_PRODUCTS.map((item, index) => (
                             <tr key={index}>
@@ -67,26 +64,26 @@ function BillModal({ onOpen, data }) {
                             </tr>
                         ))}
                         <tr>
-                            <td colSpan={2}>Tổng cộng:</td>
+                            <td colSpan={2}>Total:</td>
                             <td colSpan={2} style={{ textAlign: 'right' }}>
                                 {totalCost}đ
                             </td>
                         </tr>
                         <tr>
-                            <td colSpan={2}>Tiền ship:</td>
+                            <td colSpan={2}>Shipping Fee:</td>
                             <td colSpan={2} style={{ textAlign: 'right' }}>
                                 +15000đ
                             </td>
                         </tr>
                         <tr>
-                            <td colSpan={2}>Giảm giá:</td>
+                            <td colSpan={2}>Discount:</td>
                             <td colSpan={2} style={{ textAlign: 'right' }}>
                                 -20000đ
                             </td>
                         </tr>
                         <tr>
                             <td colSpan={2} style={{ fontWeight: 'bold' }}>
-                                Tổng giá:
+                                Total Price:
                             </td>
                             <td colSpan={2} style={{ textAlign: 'right' }}>
                                 {totalCost + 15000 - 20000}đ

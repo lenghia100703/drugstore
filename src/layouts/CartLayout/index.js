@@ -1,7 +1,7 @@
 import classNames from 'classnames/bind';
-import Header from '../../components/Header';
 
 import styles from './CartLayout.module.scss';
+import Header from '../../components/Header';
 
 const cx = classNames.bind(styles);
 

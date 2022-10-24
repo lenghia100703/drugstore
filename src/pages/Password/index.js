@@ -1,6 +1,6 @@
 import classNames from 'classnames/bind';
 import { useState } from 'react';
-import { passLogin, password, userLogin } from '../Login';
+import { passLogin } from '../Login';
 
 import styles from './Password.module.scss';
 
@@ -25,11 +25,11 @@ function Password() {
     return (
         <div className={cx('wrapper')}>
             <div className={cx('header')}>
-                <h3>Thay Đổi Mật Khẩu</h3>
+                <h3>Change Password</h3>
             </div>
             <form className={cx('user-info')} onSubmit={handleSubmit}>
                 <div className={cx('old-password')}>
-                    <div className={cx('title')}>Mật Khẩu Hiện Tại</div>
+                    <div className={cx('title')}>Current Password</div>
                     <input
                         className={cx('input-name')}
                         type="password"
@@ -38,7 +38,7 @@ function Password() {
                     />
                 </div>
                 <div className={cx('new-password')}>
-                    <div className={cx('title')}>Mật Khẩu Mới</div>
+                    <div className={cx('title')}>New Password</div>
                     <input
                         className={cx('input-name')}
                         type="password"
@@ -47,7 +47,7 @@ function Password() {
                     />
                 </div>
                 <div className={cx('check-password')}>
-                    <div className={cx('title')}>Xác Nhận Mật Khẩu</div>
+                    <div className={cx('title')}>Confirm Password</div>
                     <input
                         className={cx('input-name')}
                         type="password"
@@ -57,7 +57,7 @@ function Password() {
                 </div>
                 <div className={cx('save')}>
                     <button className={cx('save-btn')} type="submit">
-                        Xác Nhận
+                        Submit
                     </button>
                 </div>
             </form>

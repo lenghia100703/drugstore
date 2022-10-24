@@ -1,7 +1,7 @@
+import classNames from 'classnames/bind';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
 import { faLock, faXmark } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import classNames from 'classnames/bind';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -33,12 +33,12 @@ function Register() {
                         <FontAwesomeIcon icon={faXmark} />
                     </div>
                     <div className={cx('title')}>
-                        <h2>Đăng ký</h2>
+                        <h2>Register</h2>
                     </div>
                     <div className={cx('input-form')}>
                         <FontAwesomeIcon icon={faUser} style={{ marginRight: 8 }} />
                         <input
-                            placeholder="Tên người dùng"
+                            placeholder="Enter username"
                             className={cx('input')}
                             type="username"
                             value={username}
@@ -48,7 +48,7 @@ function Register() {
                     <div className={cx('input-form')}>
                         <FontAwesomeIcon icon={faLock} style={{ marginRight: 8 }} />
                         <input
-                            placeholder="Mật khẩu"
+                            placeholder="Enter password"
                             className={cx('input')}
                             type="password"
                             value={password}
@@ -58,7 +58,7 @@ function Register() {
                     <div className={cx('input-form')}>
                         <FontAwesomeIcon icon={faLock} style={{ marginRight: 8 }} />
                         <input
-                            placeholder="Nhập lại mật khẩu"
+                            placeholder="Enter repassword"
                             className={cx('input')}
                             type="password"
                             value={rePassword}
@@ -66,12 +66,12 @@ function Register() {
                         />
                     </div>
                     <button type="submit" className={cx('register-btn')}>
-                        ĐĂNG KÝ
+                        REGISTER
                     </button>
                     <div>
-                        Bạn đã có tài khoản?{' '}
+                        Do you have an account?{' '}
                         <Link to="/login" style={{ color: 'blue' }}>
-                            Đăng nhập
+                            Login
                         </Link>
                     </div>
                 </form>

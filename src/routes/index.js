@@ -3,6 +3,7 @@ import DefaultLayout from '../layouts/DefaultLayout';
 import SidebarLayout from '../layouts/SidebarLayout';
 import Address from '../pages/Address';
 import Cart from '../pages/Cart';
+import DrugStoreList from '../pages/DrugStoreList';
 import HistoryOrder from '../pages/HistoryOrder';
 import Home from '../pages/Home';
 import ListOrder from '../pages/ListOrder';
@@ -22,9 +23,10 @@ const publicRoutes = [
     { path: '/address', components: Address, layout: SidebarLayout },
     { path: '/cart', components: Cart, layout: CartLayout },
     { path: '/history-order', components: HistoryOrder, layout: DefaultLayout },
-    { path: '/nha-thuoc-ecopharmaceuticals', components: ShopDetals, layout: DefaultLayout },
+    { path: '/medical-shop/:medicalShopId', components: ShopDetals, layout: DefaultLayout },
     { path: '/list-order', components: ListOrder, layout: DefaultLayout },
     { path: '/my-list-order', components: MyListOrder, layout: DefaultLayout },
+    { path: '/medical-shop/search/keyword=:searchValue', components: DrugStoreList, layout: DefaultLayout },
 ];
 
 const privateRoutes = [];

@@ -1,10 +1,10 @@
-import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames/bind';
 import { useState } from 'react';
-import { LIST_ORDER } from '../../pages/Cart';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 
 import styles from './CartItem.module.scss';
+import { LIST_ORDER } from '../../pages/Cart';
 
 const cx = classNames.bind(styles);
 
@@ -64,7 +64,7 @@ function CartItem({ item }) {
                 {item.countOfProduct * item.price}đ
             </div>
             <div className={cx('col-4', 'col')}>
-                <button onClick={() => handleClear(cartItem)}>Xóa</button>
+                <button onClick={() => handleClear(cartItem)}>Delete</button>
             </div>
         </div>
     );

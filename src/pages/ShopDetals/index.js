@@ -1,16 +1,13 @@
-import { faCircle, faCoins, faMagnifyingGlass, faStar } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames/bind';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircle, faMagnifyingGlass, faStar } from '@fortawesome/free-solid-svg-icons';
 import { useEffect, useState } from 'react';
-import Modal from '../../components/Modal';
-import ProductItem from '../../components/ProductItem';
-import { LIST_SHOP_NEAR_ME } from '../Home';
 
 import styles from './ShopDetals.module.scss';
+import ProductItem from '../../components/ProductItem';
+import request from '../../api/axios';
 
 const cx = classNames.bind(styles);
-
-const data = LIST_SHOP_NEAR_ME[0];
 
 export const LIST_PRODUCT = [
     {
@@ -63,96 +60,93 @@ export const LIST_PRODUCT = [
 ];
 
 function ShopDetals() {
-    useEffect(() => {
-        const allWithClass = Array.from(document.getElementsByClassName('ShopDetals_star__LL5qg'));
+    const [shopById, setShopById] = useState({});
+    const [ratting, setRatting] = useState({});
 
-        switch (data.countstar) {
+    const [star1, setStar1] = useState(false);
+    const [star2, setStar2] = useState(false);
+    const [star3, setStar3] = useState(false);
+    const [star4, setStar4] = useState(false);
+    const [star5, setStar5] = useState(false);
+
+    const nameUrl = window.location.href;
+    const id = nameUrl.replace('http://localhost:2806/medical-shop/', '');
+
+    let ratingAvg = 0;
+
+    useEffect(() => {
+        request.get(`medical-shop/${id}`).then((res) => {
+            setShopById(res.data);
+        });
+        request.get(`rating/list/medicalshop/${id}`).then((res) => {
+            setRatting(res.data);
+        });
+    }, [shopById]);
+
+    useEffect(() => {
+        for (let key in ratting) {
+            ratingAvg += ratting[key].numberOfStartOnMedicalShop / ratting.length;
+            Math.floor(ratingAvg);
+        }
+        switch (ratingAvg) {
             case 1:
-                allWithClass[0].className += ' ShopDetals_checked__OLEci';
+                setStar1(true);
                 break;
             case 2:
-                allWithClass[0].className += ' ShopDetals_checked__OLEci';
-                allWithClass[1].className += ' ShopDetals_checked__OLEci';
+                setStar1(true);
+                setStar2(true);
                 break;
             case 3:
-                allWithClass[2].className += ' ShopDetals_checked__OLEci';
-                allWithClass[0].className += ' ShopDetals_checked__OLEci';
-                allWithClass[1].className += ' ShopDetals_checked__OLEci';
+                setStar1(true);
+                setStar2(true);
+                setStar3(true);
                 break;
             case 4:
-                allWithClass[3].className += ' ShopDetals_checked__OLEci';
-                allWithClass[2].className += ' ShopDetals_checked__OLEci';
-                allWithClass[0].className += ' ShopDetals_checked__OLEci';
-                allWithClass[1].className += ' ShopDetals_checked__OLEci';
+                setStar1(true);
+                setStar2(true);
+                setStar3(true);
+                setStar4(true);
                 break;
             case 5:
-                allWithClass[4].className += ' ShopDetals_checked__OLEci';
-                allWithClass[3].className += ' ShopDetals_checked__OLEci';
-                allWithClass[2].className += ' ShopDetals_checked__OLEci';
-                allWithClass[0].className += ' ShopDetals_checked__OLEci';
-                allWithClass[1].className += ' ShopDetals_checked__OLEci';
+                setStar1(true);
+                setStar2(true);
+                setStar3(true);
+                setStar4(true);
+                setStar5(true);
                 break;
         }
-    }, []);
+    }, [ratingAvg]);
 
-    const [isOpen, setIsOpen] = useState(false);
-
-    const handleOpen = () => {
-        setIsOpen(true);
-    };
     return (
         <div className={cx('wrapper')}>
             <div className={cx('detal-shop')}>
                 <div className={cx('inner-detal-shop')}>
                     <div className={cx('inner-left')}>
-                        <img src={data.img} className={cx('shop-img')} />
+                        <img src={shopById.medicalShopUrlImage} className={cx('shop-img')} />
                     </div>
                     <div className={cx('inner-right')}>
-                        <div className={cx('kind-shop')}>{data.kindshop}</div>
-                        <div className={cx('name-shop')}>{data.nameshop}</div>
-                        <div className={cx('address-shop')}>{data.address}</div>
+                        <div className={cx('kind-shop')}>{shopById.kindshop}</div>
+                        <div className={cx('name-shop')}>{shopById.medicalShopName}</div>
+                        <div className={cx('address-shop')}>{shopById.detailAddress}</div>
                         <div className={cx('ratting')}>
-                            <span className={cx('star')}>
+                            <span className={cx('star', star1 && 'checked')}>
                                 <FontAwesomeIcon icon={faStar} />
                             </span>
-                            <span className={cx('star')}>
+                            <span className={cx('star', star2 && 'checked')}>
                                 <FontAwesomeIcon icon={faStar} />
                             </span>
-                            <span className={cx('star')}>
+                            <span className={cx('star', star3 && 'checked')}>
                                 <FontAwesomeIcon icon={faStar} />
                             </span>
-                            <span className={cx('star')}>
+                            <span className={cx('star', star4 && 'checked')}>
                                 <FontAwesomeIcon icon={faStar} />
                             </span>
-                            <span className={cx('star')}>
+                            <span className={cx('star', star5 && 'checked')}>
                                 <FontAwesomeIcon icon={faStar} />
-                            </span>
-                        </div>
-                        {data.isOpen ? (
-                            <div className={cx('open')}>
-                                <span>
-                                    <FontAwesomeIcon icon={faCircle} style={{ fontSize: 9, marginRight: 4 }} />
-                                </span>
-                                <span>Mở cửa</span>
-                            </div>
-                        ) : (
-                            <div className={cx('close')}>
-                                <span>
-                                    <FontAwesomeIcon icon={faCircle} style={{ fontSize: 9, marginRight: 4 }} />
-                                </span>
-                                <span>Đã đóng</span>
-                            </div>
-                        )}
-                        <div className={cx('price')}>
-                            <span>
-                                <FontAwesomeIcon icon={faCoins} style={{ fontSize: 14, marginRight: 4 }} />
-                            </span>
-                            <span>
-                                {data.minprice} - {data.maxprice}
                             </span>
                         </div>
                         <div className={cx('utility-shop')}>
-                            <div style={{ color: '#959595' }}>DỊCH VỤ BỞI</div>
+                            <div style={{ color: '#959595' }}>SERVICE BY</div>
                             <div>DrugStore</div>
                         </div>
                     </div>
@@ -170,7 +164,7 @@ function ShopDetals() {
                         <div className={cx('namegroup')}>THUỐC RỐI LOẠN TIỀN ĐÌNH</div>
                         {LIST_PRODUCT.map((item, index) => (
                             <div>
-                                <ProductItem data={item} key={index} onClick={handleOpen} />
+                                <ProductItem data={item} key={index} onClick={() => true} />
                             </div>
                         ))}
                     </div>

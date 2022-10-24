@@ -12,8 +12,10 @@ function NotiItem({ item }) {
         <div className={cx('menu-item')} onClick={() => setIsRead(false)}>
             <Link to={item.to} className={cx('btn-item')}>
                 <div className={cx(isRead ? 'read' : 'unread')}>
-                    <div className={cx(isRead ? 'primary' : 'unread')}>{item.title}</div>
-                    <div className={cx('time')}>{item.time}h trước</div>
+                    <div className={cx(isRead ? 'primary' : 'unread')}>
+                        Order {item.id} has been placed successfully
+                    </div>
+                    <div className={cx('time')}>{item.time}h ago</div>
                 </div>
                 {isRead && <span className={cx('icon-item')}>{item.icon}</span>}
             </Link>

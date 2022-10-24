@@ -1,8 +1,9 @@
-import { faMagnifyingGlass, faXmark } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import HeadlessTippy from '@tippyjs/react/headless';
 import classNames from 'classnames/bind';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMagnifyingGlass, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import HeadlessTippy from '@tippyjs/react/headless';
 
 import styles from './Search.module.scss';
 import SearchItem from './SearchItem';
@@ -11,50 +12,13 @@ import request from '../../api/axios';
 
 const cx = classNames.bind(styles);
 
-const ITEMS = [
-    {
-        img: 'https://images.foody.vn/res/g111/1100012/prof/s640x400/foody-upload-api-foody-mobile-co-3a4c75c1-210901162314.jpeg',
-        nameshop: 'Dụng Cụ Y Tế Á Châu - Lê Ngã',
-        address: '33 Lê Ngã, P. Phú Trung, Tân Phú, TP. HCM',
-        isOpen: true,
-        to: '/dung-cu-y-te-a-chau',
-    },
-    {
-        img: 'https://images.foody.vn/res/g111/1100012/prof/s640x400/foody-upload-api-foody-mobile-co-3a4c75c1-210901162314.jpeg',
-        nameshop: 'Dụng Cụ Y Tế Á Châu - Lê Ngã',
-        address: '33 Lê Ngã, P. Phú Trung, Tân Phú, TP. HCM',
-        isOpen: true,
-        to: '/dung-cu-y-te-a-chau',
-    },
-    {
-        img: 'https://images.foody.vn/res/g111/1100012/prof/s640x400/foody-upload-api-foody-mobile-co-3a4c75c1-210901162314.jpeg',
-        nameshop: 'Dụng Cụ Y Tế Á Châu - Lê Ngã',
-        address: '33 Lê Ngã, P. Phú Trung, Tân Phú, TP. HCM',
-        isOpen: true,
-        to: '/dung-cu-y-te-a-chau',
-    },
-    {
-        img: 'https://images.foody.vn/res/g111/1100012/prof/s640x400/foody-upload-api-foody-mobile-co-3a4c75c1-210901162314.jpeg',
-        nameshop: 'Dụng Cụ Y Tế Á Châu - Lê Ngã',
-        address: '33 Lê Ngã, P. Phú Trung, Tân Phú, TP. HCM',
-        isOpen: true,
-        to: '/dung-cu-y-te-a-chau',
-    },
-    {
-        img: 'https://images.foody.vn/res/g100/991502/prof/s640x400/foody-upload-api-foody-mobile-untitled-1-191219085648.jpg',
-        nameshop: 'Nhà Thuốc Thái Minh - Mai Xuân Thưởng',
-        address: '235C Mai Xuân Thưởng, P. 6, Quận 6, TP. HCM',
-        isOpen: false,
-        to: '/nha-thuoc-thai-minh',
-    },
-];
-
 function Search() {
     const [searchValue, setSearchValue] = useState('');
     const [searchResult, setSearchResult] = useState([]);
     const [showResults, setShowResults] = useState(true);
     const [loading, setLoading] = useState(false);
     const debounced = useDebounce(searchValue, 500);
+    const navigate = useNavigate();
     const searchRef = useRef();
 
     const handleSearch = (e) => {
@@ -64,6 +28,16 @@ function Search() {
     const handleClear = () => {
         setSearchValue('');
         searchRef.current.focus();
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (searchValue.trim()) {
+            localStorage.setItem('searchResults', JSON.stringify(searchResult));
+            navigate(`/medical-shop/search/keyword=${searchValue}`);
+        } else {
+            navigate('/');
+        }
     };
 
     useEffect(() => {
@@ -100,13 +74,13 @@ function Search() {
             )}
             onClickOutside={() => setShowResults(false)}
         >
-            <div className={cx('form-search')}>
+            <form className={cx('form-search')} onSubmit={handleSubmit}>
                 <input
                     ref={searchRef}
                     value={searchValue}
                     onChange={handleSearch}
                     onFocus={() => setShowResults(true)}
-                    placeholder="Tìm nhà thuốc, cửa hàng hóa mỹ phẩm..."
+                    placeholder="Find pharmacy, drug stores..."
                     className={cx('input-search')}
                 />
                 {!!searchValue && !loading && (
@@ -114,10 +88,10 @@ function Search() {
                         <FontAwesomeIcon icon={faXmark} />
                     </button>
                 )}
-                <button className={cx('search-btn')}>
+                <button className={cx('search-btn')} type="submit">
                     <FontAwesomeIcon icon={faMagnifyingGlass} className={cx('search-icon')} />
                 </button>
-            </div>
+            </form>
         </HeadlessTippy>
     );
 }

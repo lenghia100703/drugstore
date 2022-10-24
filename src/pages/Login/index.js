@@ -1,8 +1,8 @@
+import classNames from 'classnames/bind';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
 import { faLock, faXmark } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
-import classNames from 'classnames/bind';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -44,12 +44,12 @@ function Login() {
                         <FontAwesomeIcon icon={faXmark} />
                     </div>
                     <div className={cx('title')}>
-                        <h2>Đăng nhập</h2>
+                        <h2>Log In</h2>
                     </div>
                     <div className={cx('input-form')}>
                         <FontAwesomeIcon icon={faUser} style={{ marginRight: 8 }} />
                         <input
-                            placeholder="Tên người dùng"
+                            placeholder="Enter your username"
                             className={cx('input')}
                             type="username"
                             value={username}
@@ -62,7 +62,7 @@ function Login() {
                     <div className={cx('input-form')}>
                         <FontAwesomeIcon icon={faLock} style={{ marginRight: 8 }} />
                         <input
-                            placeholder="Mật khẩu"
+                            placeholder="Enter your password"
                             className={cx('input')}
                             type="password"
                             value={password}
@@ -73,10 +73,10 @@ function Login() {
                         />
                     </div>
                     <button type="submit" className={cx('login-btn')}>
-                        ĐĂNG NHẬP
+                        LOG IN
                     </button>
                     <Link to="/register" style={{ color: 'white' }}>
-                        <button className={cx('register-btn')}>TẠO TÀI KHOẢN MỚI</button>
+                        <button className={cx('register-btn')}>CREATE NEW ACCOUNT</button>
                     </Link>
                 </form>
             </div>

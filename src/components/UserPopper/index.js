@@ -1,10 +1,9 @@
+import classNames from 'classnames/bind';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
 import { faArrowRightFromBracket, faCartShopping } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { click } from '@testing-library/user-event/dist/click';
-import HeadlessTippy from '@tippyjs/react/headless';
-import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
+import HeadlessTippy from '@tippyjs/react/headless';
 
 import styles from './UserPopper.module.scss';
 
@@ -14,21 +13,21 @@ const USER_POPPER = [
     {
         to: '/user',
         icon: <FontAwesomeIcon icon={faUser} />,
-        title: 'Xem hồ sơ',
+        title: 'View Profile',
     },
     {
         to: '/cart',
         icon: <FontAwesomeIcon icon={faCartShopping} />,
-        title: 'Giỏ hàng',
+        title: 'View Cart',
     },
     {
         to: '/history-order',
         icon: <FontAwesomeIcon icon={faCartShopping} />,
-        title: 'Lịch sử đã mua',
+        title: 'Order History',
     },
     {
         icon: <FontAwesomeIcon icon={faArrowRightFromBracket} />,
-        title: 'Đăng xuất',
+        title: 'Log Out',
         separate: true,
     },
 ];
@@ -37,28 +36,28 @@ const SHIPPER_POPPER = [
     {
         to: '/user',
         icon: <FontAwesomeIcon icon={faUser} />,
-        title: 'Xem hồ sơ',
+        title: 'View Profile',
     },
     {
         to: '/list-order',
         icon: <FontAwesomeIcon icon={faCartShopping} />,
-        title: 'Danh sách đặt hàng',
+        title: 'Delivery List',
     },
     {
         to: '/my-list-order',
         icon: <FontAwesomeIcon icon={faCartShopping} />,
-        title: 'Danh sách đặt hàng của tôi',
+        title: 'My Delivery List',
     },
     {
         icon: <FontAwesomeIcon icon={faArrowRightFromBracket} />,
-        title: 'Đăng xuất',
+        title: 'Log Out',
         separate: true,
     },
 ];
 
 function UserPopper({ children }) {
     const renderItems = () => {
-        return USER_POPPER.map((item, index) => {
+        return SHIPPER_POPPER.map((item, index) => {
             return (
                 <div
                     className={cx('menu-item', {

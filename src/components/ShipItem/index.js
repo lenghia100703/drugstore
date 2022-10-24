@@ -1,9 +1,9 @@
 import classNames from 'classnames/bind';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import BillModal from '../BillModal';
 
 import styles from './ShipItem.module.scss';
+import BillModal from '../BillModal';
 
 const cx = classNames.bind(styles);
 
@@ -41,7 +41,7 @@ function ShipItem({ data, count }) {
             {data.myListOrder && <div className={cx('col-9', 'col')}>{data.deliveredTime}</div>}
             <Link to={'/nha-thuoc-ecopharmaceuticals'} className={cx('col-4', 'col')}>
                 <div style={{ fontWeight: 700 }}>{data.nameshop}</div>
-                <div>{data.addressShop}</div>
+                <div>{data.address}</div>
             </Link>
             <div className={cx('col-5', 'col')}>
                 <div style={{ fontWeight: 700 }}>{data.nameCustomer}</div>
@@ -54,24 +54,24 @@ function ShipItem({ data, count }) {
             <div className={cx('col-7', 'col')}>
                 {data.status ? (
                     data.myListOrder ? (
-                        <div className={cx('incomplete')}>Đã giao</div>
+                        <div className={cx('incomplete')}>Delivered</div>
                     ) : (
-                        <div className={cx('incomplete')}>Đã nhận</div>
+                        <div className={cx('incomplete')}>Received</div>
                     )
                 ) : data.myListOrder ? (
-                    <div className={cx('complete')}>Chưa giao</div>
+                    <div className={cx('complete')}>Not delivery</div>
                 ) : (
-                    <div className={cx('complete')}>Chưa nhận</div>
+                    <div className={cx('complete')}>Not received</div>
                 )}
             </div>
             <div className={cx('col-8', 'col')}>
                 <span style={{ color: 'blue', cursor: 'pointer' }} onClick={handleOpen}>
-                    Xem chi tiết
+                    View detail
                 </span>
             </div>
             {!data.myListOrder && (
                 <div className={cx('col-9', 'col')}>
-                    <button className={cx('add-btn')}>Nhận</button>
+                    <button className={cx('add-btn')}>Confirm</button>
                 </div>
             )}
 

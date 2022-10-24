@@ -18,11 +18,11 @@ function Profile() {
     return (
         <div className={cx('wrapper')}>
             <div className={cx('header')}>
-                <h3>Hồ Sơ Của Tôi</h3>
+                <h3>My Profile</h3>
             </div>
             <form className={cx('user-info')} onSubmit={handleSubmit}>
                 <div className={cx('user-name')}>
-                    <div className={cx('title')}>Tên đăng nhập</div>
+                    <div className={cx('title')}>Username</div>
                     <input
                         className={cx('input-username')}
                         value={username == '' ? 'lenghia1007' : username}
@@ -32,7 +32,7 @@ function Profile() {
                     />
                 </div>
                 <div className={cx('full-name')}>
-                    <div className={cx('title')}>Tên đầy đủ</div>
+                    <div className={cx('title')}>Fullname</div>
                     <input
                         value={fullname == '' ? 'Lê Nghĩa' : fullname}
                         onChange={(e) => {
@@ -54,11 +54,11 @@ function Profile() {
                     />
                 </div>
                 <div className={cx('role')}>
-                    <div className={cx('title')}>Vai trò</div>
-                    <div style={{ color: 'gray' }}>Khách hàng</div>
+                    <div className={cx('title')}>Role</div>
+                    <div style={{ color: 'gray' }}>Customer</div>
                 </div>
                 <div className={cx('save')}>
-                    <button className={cx('save-btn')}>Lưu</button>
+                    <button className={cx('save-btn')}>Save</button>
                 </div>
             </form>
         </div>
