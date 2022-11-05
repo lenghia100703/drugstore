@@ -5,26 +5,33 @@ import { useState } from 'react';
 
 import styles from './ProductItem.module.scss';
 import Modal from '../Modal';
+import { useDispatch } from 'react-redux';
+import { AddCart } from '../../actions/cartAction';
 
 const cx = classNames.bind(styles);
 
 function ProductItem({ data, onClick }) {
     const [isOpen, setIsOpen] = useState(false);
-
+    const [dataItem, setDataItem] = useState([]);
+    const dispatch = useDispatch();
     const handleOpen = () => {
         setIsOpen(true);
+    };
+
+    const handleBooking = (data) => {
+        dispatch(AddCart(data));
     };
     return (
         <div className={cx('wrapper')}>
             <div className={cx('inner')}>
                 <div className={cx('inner-left')}>
                     <div className={cx('img')} onClick={handleOpen}>
-                        <img className={cx('shop-img')} src={data.img} />
+                        <img className={cx('shop-img')} src={data.goodsUrlImage} />
                     </div>
                     <div className={cx('title')}>
-                        <div className={cx('name-product')}>{data.nameproduct}</div>
+                        <div className={cx('name-product')}>{data.goodsName}</div>
                         <span className={cx('count-order-product')}>
-                            Đã được đặt <span style={{ color: '#464646', fontWeight: 700 }}>{data.countorder}</span> lần
+                            Đã được đặt <span style={{ color: '#464646', fontWeight: 700 }}>{data.quantity}+</span> lần
                         </span>
                     </div>
                 </div>
@@ -42,7 +49,7 @@ function ProductItem({ data, onClick }) {
                     >
                         đ
                     </span>
-                    <div className={cx('btn-adding')}>
+                    <div className={cx('btn-adding')} onClick={() => handleBooking(data)}>
                         <FontAwesomeIcon icon={faPlus} />
                     </div>
                 </div>

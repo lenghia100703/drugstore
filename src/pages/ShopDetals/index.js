@@ -62,6 +62,7 @@ export const LIST_PRODUCT = [
 function ShopDetals() {
     const [shopById, setShopById] = useState({});
     const [ratting, setRatting] = useState({});
+    const [good, setGood] = useState([]);
 
     const [star1, setStar1] = useState(false);
     const [star2, setStar2] = useState(false);
@@ -70,18 +71,28 @@ function ShopDetals() {
     const [star5, setStar5] = useState(false);
 
     const nameUrl = window.location.href;
-    const id = nameUrl.replace('http://localhost:2806/medical-shop/', '');
+    const shopId = nameUrl.replace('http://localhost:2806/medical-shop/', '');
 
     let ratingAvg = 0;
 
     useEffect(() => {
-        request.get(`medical-shop/${id}`).then((res) => {
+        request.get(`medical-shop/${shopId}`).then((res) => {
             setShopById(res.data);
         });
-        request.get(`rating/list/medicalshop/${id}`).then((res) => {
+        request.get(`rating/list/medicalshop/${shopId}`).then((res) => {
             setRatting(res.data);
         });
-    }, [shopById]);
+        request.get(`medical-shop/goods/goods1`).then((res) => {
+            if (shopId === res.data.medicalShopId) {
+                good.push(res.data);
+            }
+        });
+        request.get(`medical-shop/goods/goods2`).then((res) => {
+            if (shopId === res.data.medicalShopId) {
+                good.push(res.data);
+            }
+        });
+    }, [shopId, good]);
 
     useEffect(() => {
         for (let key in ratting) {
@@ -161,8 +172,7 @@ function ShopDetals() {
                         <input className={cx('input-search')} placeholder="Tìm món" />
                     </div>
                     <div>
-                        <div className={cx('namegroup')}>THUỐC RỐI LOẠN TIỀN ĐÌNH</div>
-                        {LIST_PRODUCT.map((item, index) => (
+                        {good.map((item, index) => (
                             <div>
                                 <ProductItem data={item} key={index} onClick={() => true} />
                             </div>

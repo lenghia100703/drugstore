@@ -2,16 +2,19 @@ import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell } from '@fortawesome/free-regular-svg-icons';
+import { useSelector } from 'react-redux';
 
 import styles from './Header.module.scss';
 import NotiPopper from '../NotiPopper';
 import UserPopper from '../UserPopper';
-import { USER_INFO } from '../SidebarUser';
+import ManagerPopper from '../ManagerPopper';
+import { faSortDown } from '@fortawesome/free-solid-svg-icons';
 
 const cx = classNames.bind(styles);
 
 function Header() {
-    const USER = true;
+    const userLogin = useSelector((state) => state.userLogin);
+    const { userInfo } = userLogin;
 
     return (
         <div className={cx('wrapper')}>
@@ -24,15 +27,26 @@ function Header() {
                     </div>
                 </div>
                 <div className={cx('right')}>
-                    {USER ? (
+                    {userInfo ? (
                         <div className={cx('user')}>
+                            <ManagerPopper>
+                                <div className={cx('manager')}>
+                                    Manage
+                                    <span style={{ fontSize: 20, marginBottom: 4, marginLeft: 4 }}>
+                                        <FontAwesomeIcon icon={faSortDown} />
+                                    </span>
+                                </div>
+                            </ManagerPopper>
                             <NotiPopper>
                                 <div className={cx('icon-search')}>
                                     <FontAwesomeIcon icon={faBell} />
                                 </div>
                             </NotiPopper>
                             <UserPopper>
-                                <img src={USER_INFO.avt} className={cx('avt-user')} />
+                                <img
+                                    src={'https://upload.wikimedia.org/wikipedia/vi/1/1d/Manchester_City_FC_logo.svg'}
+                                    className={cx('avt-user')}
+                                />
                             </UserPopper>
                         </div>
                     ) : (

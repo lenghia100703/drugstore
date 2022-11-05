@@ -18,6 +18,29 @@ function BillModal({ onOpen, data }) {
             return totalCostTemp;
         });
     }, [totalCost]);
+
+    const [nameCustomer, setNameCustomer] = useState('');
+    const [phone, setPhone] = useState('');
+    const [nameShop, setNameShop] = useState('');
+    const [addressShop, setAddressShop] = useState();
+    const userList = JSON.parse(localStorage.getItem('userList'));
+    const shopList = JSON.parse(localStorage.getItem('shopList'));
+    useEffect(() => {
+        for (let i = 0; i < userList.length; i++) {
+            if (data.customerId === userList[i].userId) {
+                setNameCustomer(userList[i].fullName);
+                setPhone(userList[i].phoneNumber);
+            } else {
+                setNameCustomer('Dao Tan Hai');
+            }
+        }
+        for (let i = 0; i < shopList.length; i++) {
+            if (data.medicalShopId === shopList[i].medicalShopId) {
+                setNameShop(shopList[i].medicalShopName);
+                setAddressShop(shopList[i].detailAddress);
+            }
+        }
+    }, []);
     return (
         <div className={cx('dark-bg')} onClick={() => onOpen(false)}>
             <div
@@ -29,21 +52,21 @@ function BillModal({ onOpen, data }) {
                 <div className={cx('content')}>
                     <table>
                         <tr>
-                            <td colSpan={2}>#{data.id}</td>
+                            <td colSpan={2}>{data.billId}</td>
                             <td colSpan={2} style={{ textAlign: 'right' }}>
                                 {data.shipper ? (
                                     <>Shipper: {data.shipper}</>
                                 ) : (
                                     <>
-                                        Customer: {data.nameCustomer}, Phone: {data.phoneCustomer}
+                                        Customer: {nameCustomer}, Phone: {phone}
                                     </>
                                 )}
                             </td>
                         </tr>
                         <tr>
                             <td colSpan={4} style={{ textAlign: 'center' }}>
-                                <div style={{ fontWeight: 'bold' }}>{data.nameshop}</div>
-                                <div>{data.address}</div>
+                                <div style={{ fontWeight: 'bold' }}>{nameShop}</div>
+                                <div>{addressShop}</div>
                             </td>
                         </tr>
                         <tr>
@@ -66,7 +89,7 @@ function BillModal({ onOpen, data }) {
                         <tr>
                             <td colSpan={2}>Total:</td>
                             <td colSpan={2} style={{ textAlign: 'right' }}>
-                                {totalCost}đ
+                                {data.totalPrice}đ
                             </td>
                         </tr>
                         <tr>
@@ -86,7 +109,7 @@ function BillModal({ onOpen, data }) {
                                 Total Price:
                             </td>
                             <td colSpan={2} style={{ textAlign: 'right' }}>
-                                {totalCost + 15000 - 20000}đ
+                                {data.totalPrice + 15000 - 20000}đ
                             </td>
                         </tr>
                     </table>

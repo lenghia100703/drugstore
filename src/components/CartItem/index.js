@@ -1,72 +1,73 @@
 import classNames from 'classnames/bind';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 
 import styles from './CartItem.module.scss';
-import { LIST_ORDER } from '../../pages/Cart';
+import request from '../../api/axios';
+import { useDispatch } from 'react-redux';
+import { DecreaseQuantity, DeleteCart, IncreaseQuantity } from '../../actions/cartAction';
 
 const cx = classNames.bind(styles);
 
 function CartItem({ item }) {
-    const [countOfProduct, setCountOfProduct] = useState(item.countOfProduct);
-    const [cartItem, setCartItem] = useState(() => {
-        for (let i = 0; i < LIST_ORDER.length; i++) {
-            if (LIST_ORDER[i] === item) {
-                return LIST_ORDER[i];
-            }
-        }
-    });
-    const handleSub = () => {
-        setCountOfProduct((prev) => {
-            if (prev >= 1) return prev - 1;
-            else return 0;
+    useEffect(() => {
+        request.get(`medical-shop/${item.medicalShopId}`).then((res) => {
+            setShop(res.data);
         });
-        item.countOfProduct--;
+    }, []);
+    const [visible, setVisible] = useState(true);
+    const [countOfProduct, setCountOfProduct] = useState(parseInt(item.quantity));
+    const [shop, setShop] = useState({});
+    const dispatch = useDispatch();
+    const handleSub = (data) => {
+        dispatch(DecreaseQuantity(data));
     };
 
-    const handleAdd = () => {
-        setCountOfProduct((prev) => prev + 1);
-        item.countOfProduct++;
+    const handleAdd = (data) => {
+        dispatch(IncreaseQuantity(data));
     };
 
-    const handleClear = (item) => {
-        setCartItem(() => {
-            for (let i = 0; i < LIST_ORDER.length; i++) {
-                if (LIST_ORDER[i] === item) {
-                    LIST_ORDER.splice(i, 1);
-                }
-            }
-            console.log(LIST_ORDER);
-        });
+    const handleClear = (data) => {
+        dispatch(DeleteCart(data));
     };
     return (
-        <div className={cx('rows-1')}>
-            <div className={cx('col-5', 'col')}>
-                <input type="checkbox" />
-            </div>
-            <div className={cx('col-1', 'col')}>
-                <img src={item.img} className={cx('img')} />
-                <span>{item.nameproduct}</span>
-            </div>
-            <div className={cx('col-2', 'col')}>
-                <div className={cx('count-product')}>
-                    <button onClick={handleSub} className={cx('sub-btn')}>
-                        <FontAwesomeIcon icon={faMinus} />
-                    </button>
-                    <span>{countOfProduct}</span>
-                    <button onClick={handleAdd} className={cx('add-btn')}>
-                        <FontAwesomeIcon icon={faPlus} />
-                    </button>
+        <>
+            {visible ? (
+                <div className={cx('rows-1')}>
+                    <div className={cx('col-5', 'col')}>
+                        <input type="checkbox" />
+                    </div>
+                    <div className={cx('col-1', 'col')}>
+                        <img src={item.goodsUrlImage} className={cx('img')} />
+                        <span>{item.goodsName}</span>
+                    </div>
+                    <div className={cx('col-6', 'col')}>
+                        <div className={cx('nameshop')}>{shop.medicalShopName}</div>
+                        <div className={cx('addressshop')}>{shop.detailAddress}</div>
+                    </div>
+                    <div className={cx('col-2', 'col')}>
+                        <div className={cx('count-product')}>
+                            <button onClick={() => handleSub(item)} className={cx('sub-btn')}>
+                                <FontAwesomeIcon icon={faMinus} />
+                            </button>
+                            <span>{item.quantity}</span>
+                            <button onClick={() => handleAdd(item)} className={cx('add-btn')}>
+                                <FontAwesomeIcon icon={faPlus} />
+                            </button>
+                        </div>
+                    </div>
+                    <div className={cx('col-3', 'col')} style={{ color: '#ee4d2d' }}>
+                        {item.quantity * item.price}đ
+                    </div>
+                    <div className={cx('col-4', 'col')}>
+                        <button onClick={() => handleClear(item)}>Delete</button>
+                    </div>
                 </div>
-            </div>
-            <div className={cx('col-3', 'col')} style={{ color: '#ee4d2d' }}>
-                {item.countOfProduct * item.price}đ
-            </div>
-            <div className={cx('col-4', 'col')}>
-                <button onClick={() => handleClear(cartItem)}>Delete</button>
-            </div>
-        </div>
+            ) : (
+                <></>
+            )}
+        </>
     );
 }
 

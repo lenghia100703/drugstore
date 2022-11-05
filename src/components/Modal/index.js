@@ -16,14 +16,14 @@ function Modal({ onOpen, data }) {
                 }}
             >
                 <div className={cx('body')}>
-                    <img src={data.img} className={cx('img')} />
+                    <img src={data.goodsUrlImage} className={cx('img')} />
                 </div>
                 <div className={cx('info')}>
                     <div>
-                        <div className={cx('name-product')}>{data.nameproduct}</div>
+                        <div className={cx('name-product')}>{data.goodsName}</div>
                         <div className={cx('detals-product')}>{data.detalsproduct}</div>
                         <div className={cx('count-order-product')}>
-                            Đã được đặt <span style={{ fontWeight: 700 }}>{data.countorder}</span> lần
+                            Đã được đặt <span style={{ fontWeight: 700 }}>{data.quantity}+</span> lần
                         </div>
                     </div>
                     <div>

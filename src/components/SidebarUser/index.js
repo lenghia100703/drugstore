@@ -5,22 +5,23 @@ import { faKey, faLocationDot } from '@fortawesome/free-solid-svg-icons';
 import { Link, NavLink } from 'react-router-dom';
 
 import styles from './SidebarUser.module.scss';
+import { useSelector } from 'react-redux';
 
 const cx = classNames.bind(styles);
 
-export const USER_INFO = {
-    avt: 'https://upload.wikimedia.org/wikipedia/vi/1/1d/Manchester_City_FC_logo.svg',
-    username: 'lenghia1007',
-};
-
 function SidebarUser() {
+    const userLogin = useSelector((state) => state.userLogin);
+    const { userInfo } = userLogin;
     return (
         <div className={cx('sidebar-user')}>
             <div className={cx('user-name')}>
                 <Link to="/user">
-                    <img className={cx('user-avt')} src={USER_INFO.avt} />
+                    <img
+                        className={cx('user-avt')}
+                        src={'https://upload.wikimedia.org/wikipedia/vi/1/1d/Manchester_City_FC_logo.svg'}
+                    />
                 </Link>
-                <div className={cx('name-title')}>{USER_INFO.username}</div>
+                <div className={cx('name-title')}>{userInfo.fullName}</div>
             </div>
             <NavLink to="/user" className={(nav) => cx('profile', { active: nav.isActive })}>
                 <FontAwesomeIcon icon={faUser} />

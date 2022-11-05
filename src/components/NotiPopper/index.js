@@ -5,6 +5,8 @@ import HeadlessTippy from '@tippyjs/react/headless';
 
 import styles from './NotiPopper.module.scss';
 import NotiItem from './NotiItem';
+import { useEffect, useState } from 'react';
+import request from '../../api/axios';
 
 const cx = classNames.bind(styles);
 
@@ -60,6 +62,13 @@ const NOTISHIPPER_POPPER = [
 ];
 
 function NotiPopper({ children }) {
+    const [noti, setNoti] = useState([]);
+    useEffect(() => {
+        request.get('notification/list/user3').then((res) => {
+            setNoti(res.data);
+        });
+        console.log(noti);
+    }, []);
     return (
         <HeadlessTippy
             placement="bottom-end"
@@ -71,7 +80,7 @@ function NotiPopper({ children }) {
                             <h3>Notifications</h3>
                         </div>
                         <div className={cx('menu-body')}>
-                            {NOTIUSER_POPPER.map((item, index) => (
+                            {noti.map((item, index) => (
                                 <NotiItem key={index} item={item} />
                             ))}
                         </div>

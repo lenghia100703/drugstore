@@ -1,7 +1,7 @@
 .rows-1 {
     height: 100%;
     display: grid;
-    grid-template-columns: 5% 43.6% 23.53% 14.82% 16.96%;
+    grid-template-columns: 5% 26.6% 26.53% 16.82% 11.96% 13%;
     border-bottom: 1px solid rgba(22, 24, 35, 0.12);
     padding: 10px 0 10px 0;
 }
@@ -45,6 +45,13 @@
     justify-content: center;
 }
 
+.col-6 {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 .sub-btn {
     font-size: 20px;
     border-right: 1px solid rgba(22, 24, 35, 0.12);
@@ -63,4 +70,12 @@
     justify-content: space-between;
     width: 100px;
     border: 1px solid rgba(22, 24, 35, 0.12);
+}
+
+.nameshop {
+    font-weight: 700;
+}
+
+.addressshop {
+    font-size: 13px;
 }

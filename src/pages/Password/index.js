@@ -1,6 +1,5 @@
 import classNames from 'classnames/bind';
 import { useState } from 'react';
-import { passLogin } from '../Login';
 
 import styles from './Password.module.scss';
 
@@ -14,8 +13,6 @@ function Password() {
     const handleSubmit = (e) => {
         if (oldPassword == '' || newPassword == '' || reNewPassword == '') {
             alert('Please enter ');
-        } else if (oldPassword !== passLogin) {
-            alert('Wrong old password');
         } else if (newPassword !== reNewPassword) {
             alert('Wrong repassword, please try again');
         }

@@ -21,7 +21,7 @@
 .rows-1 {
     height: 100%;
     display: grid;
-    grid-template-columns: 5% 43.6% 23.53% 14.82% 16.96%;
+    grid-template-columns: 5% 26.6% 26.53% 16.82% 11.96% 13%;
     border-bottom: 1px solid rgba(22, 24, 35, 0.12);
     padding: 10px 0 10px 0;
 }
@@ -63,6 +63,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.col-6 {
+    display: flex;
+    align-items: center;
 }
 
 .table-product-body {

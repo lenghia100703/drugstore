@@ -3,35 +3,36 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
 import { faLock, faXmark } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { login } from '../../actions/userAction';
+import { useDispatch, useSelector } from 'react-redux';
 
 import styles from './Login.module.scss';
+import request from '../../api/axios';
 
 const cx = classNames.bind(styles);
 
-export let userLogin = '';
-export let passLogin = '';
-
 function Login() {
+    let CUSTOMER_LIST = [];
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const handleSubmit = (e) => {
-        if (username == '' || password == '') {
-            alert('Please enter a username and password');
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const userLogin = useSelector((state) => state.userLogin);
+    const { userInfo } = userLogin;
+
+    useEffect(() => {
+        if (userInfo) {
+            navigate('/');
         }
-        axios
-            .post('http://localhost:8083/api/v1/user/login', {
-                username: username,
-                password: password,
-            })
-            .then((result) => {
-                console.log(result.data);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+    }, [userInfo, navigate]);
+
+    const handleSubmit = (e) => {
         e.preventDefault();
+        dispatch(login(username, password));
     };
     return (
         <div className={cx('wrapper')}>
@@ -55,7 +56,6 @@ function Login() {
                             value={username}
                             onChange={(e) => {
                                 setUsername(e.target.value);
-                                userLogin = username;
                             }}
                         />
                     </div>
@@ -68,7 +68,6 @@ function Login() {
                             value={password}
                             onChange={(e) => {
                                 setPassword(e.target.value);
-                                passLogin = password;
                             }}
                         />
                     </div>

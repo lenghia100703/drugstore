@@ -1,18 +1,38 @@
+import axios from 'axios';
 import classNames from 'classnames/bind';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 
 import styles from './Profile.module.scss';
+import request from '../../api/axios';
 
 const cx = classNames.bind(styles);
 
 function Profile() {
+    const userLogin = useSelector((state) => state.userLogin);
+    const { userInfo } = userLogin;
     const [username, setUsername] = useState('');
     const [fullname, setFullName] = useState('');
     const [email, setEmail] = useState('');
+    const userData = JSON.parse(localStorage.getItem('userData'));
+    useEffect(() => {
+        setUsername(userData.userName);
+        setFullName(userData.fullName);
+        setEmail(userData.email);
+    }, []);
 
     const handleSubmit = (e) => {
-        alert(`username: ${username}, fullname: ${fullname}, email: ${email}`);
         e.preventDefault();
+        let item = { username, fullname, email };
+        alert(`username: ${username}, fullname: ${fullname}, email: ${email}`);
+        fetch(`http://localhost:8083/api/v1/booking/update`, {
+            method: 'PUT',
+            body: JSON.stringify(item),
+        }).then((result) => {
+            result.json().then((resp) => {
+                console.warn(resp);
+            });
+        });
     };
 
     return (
@@ -25,7 +45,7 @@ function Profile() {
                     <div className={cx('title')}>Username</div>
                     <input
                         className={cx('input-username')}
-                        value={username == '' ? 'lenghia1007' : username}
+                        value={username}
                         onChange={(e) => {
                             setUsername(e.target.value);
                         }}
@@ -34,7 +54,7 @@ function Profile() {
                 <div className={cx('full-name')}>
                     <div className={cx('title')}>Fullname</div>
                     <input
-                        value={fullname == '' ? 'Lê Nghĩa' : fullname}
+                        value={fullname}
                         onChange={(e) => {
                             setFullName(e.target.value);
                         }}
@@ -45,7 +65,7 @@ function Profile() {
                 <div className={cx('email')}>
                     <div className={cx('title')}>Email</div>
                     <input
-                        value={email == '' ? 'abc123@gmail.com' : email}
+                        value={email}
                         onChange={(e) => {
                             setEmail(e.target.value);
                         }}
@@ -55,10 +75,12 @@ function Profile() {
                 </div>
                 <div className={cx('role')}>
                     <div className={cx('title')}>Role</div>
-                    <div style={{ color: 'gray' }}>Customer</div>
+                    <div style={{ color: 'gray' }}>{userInfo.roles}</div>
                 </div>
                 <div className={cx('save')}>
-                    <button className={cx('save-btn')}>Save</button>
+                    <button className={cx('save-btn')} type="submit">
+                        Save
+                    </button>
                 </div>
             </form>
         </div>

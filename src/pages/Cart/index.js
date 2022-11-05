@@ -1,80 +1,34 @@
 import classNames from 'classnames/bind';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import styles from './Cart.module.scss';
 import CartItem from '../../components/CartItem';
+import request from '../../api/axios';
+import { products } from '../../components/ProductItem';
+import { useSelector } from 'react-redux';
 
 const cx = classNames.bind(styles);
 
-export const LIST_ORDER = [
-    {
-        id: 0,
-        img: 'https://cf.shopee.vn/file/c3005a166c0594e0618140a1e9d7fbc1_tn',
-        nameproduct: 'Thuốc trị chóng mặt Taginyl 500mg',
-        countOfProduct: 1,
-        price: 17000,
-    },
-    {
-        id: 1,
-        img: 'https://cf.shopee.vn/file/c3005a166c0594e0618140a1e9d7fbc1_tn',
-        nameproduct: 'Thuốc trị chóng mặt Taginyl 500mg',
-        countOfProduct: 2,
-        price: 17000,
-    },
-    {
-        id: 2,
-        img: 'https://cf.shopee.vn/file/c3005a166c0594e0618140a1e9d7fbc1_tn',
-        nameproduct: 'Thuốc trị chóng mặt Taginyl 500mg',
-        countOfProduct: 3,
-        price: 17000,
-    },
-    {
-        id: 3,
-        img: 'https://cf.shopee.vn/file/c3005a166c0594e0618140a1e9d7fbc1_tn',
-        nameproduct: 'Thuốc trị chóng mặt Taginyl 500mg',
-        countOfProduct: 4,
-        price: 17000,
-    },
-    {
-        id: 4,
-        img: 'https://cf.shopee.vn/file/c3005a166c0594e0618140a1e9d7fbc1_tn',
-        nameproduct: 'Thuốc trị chóng mặt Taginyl 500mg',
-        countOfProduct: 4,
-        price: 17000,
-    },
-    {
-        id: 5,
-        img: 'https://cf.shopee.vn/file/c3005a166c0594e0618140a1e9d7fbc1_tn',
-        nameproduct: 'Thuốc trị chóng mặt Taginyl 500mg',
-        countOfProduct: 4,
-        price: 17000,
-    },
-    {
-        id: 6,
-        img: 'https://cf.shopee.vn/file/c3005a166c0594e0618140a1e9d7fbc1_tn',
-        nameproduct: 'Thuốc trị chóng mặt Taginyl 500mg',
-        countOfProduct: 4,
-        price: 17000,
-    },
-];
+// export const LIST_ORDER = [
 
 function Cart() {
+    const cart = useSelector((state) => state.cart);
+    const { numberCart, Carts } = cart;
     const [countOfProduct, setCountOfProduct] = useState(() => {
-        let count;
-        for (let i = 0; i < LIST_ORDER.length; i++) {
-            count = LIST_ORDER[i].countOfProduct;
-        }
-        return count;
+        // let count;
+        // for (let i = 0; i < LIST_ORDER.length; i++) {
+        //     count = LIST_ORDER[i].countOfProduct;
+        // }
+        // return count;
     });
-
-    const [list, setList] = useState(LIST_ORDER ?? []);
+    const [list, setList] = useState([]);
 
     const [totalProduct, setTotalProduct] = useState(() => {
-        let sum = 0;
-        for (let i = 0; i < LIST_ORDER.length; i++) {
-            sum += LIST_ORDER[i].countOfProduct;
-        }
-        return sum;
+        // let sum = 0;
+        // for (let i = 0; i < LIST_ORDER.length; i++) {
+        //     sum += LIST_ORDER[i].countOfProduct;
+        // }
+        // return sum;
     });
 
     return (
@@ -87,19 +41,20 @@ function Cart() {
                             <input type="checkbox" />
                         </div>
                         <div className={cx('col-1', 'col')}>Product</div>
+                        <div className={cx('col-6', 'col')}>Shop</div>
                         <div className={cx('col-2', 'col')}>Quantity</div>
                         <div className={cx('col-3', 'col')}>Total Price</div>
                         <div className={cx('col-4', 'col')}>Actions</div>
                     </div>
                 </div>
                 <div className={cx('table-product-body')}>
-                    {list.map((item, index) => (
+                    {Carts.map((item, index) => (
                         <CartItem item={item} key={index} />
                     ))}
                 </div>
                 <div className={cx('pay')}>
                     <span style={{ marginLeft: 22 }}>
-                        Total (<span>{totalProduct}</span> item)
+                        Total (<span>{numberCart}</span> products)
                     </span>
                     <span>
                         <button className={cx('pay-btn')}>Check out</button>
