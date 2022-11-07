@@ -29,7 +29,15 @@ function Header() {
                 <div className={cx('right')}>
                     {userInfo ? (
                         <div className={cx('user')}>
-                            <ManagerPopper>
+                            <ManagerPopper shop={true}>
+                                <div className={cx('manager')}>
+                                    Shop Owner
+                                    <span style={{ fontSize: 20, marginBottom: 4, marginLeft: 4 }}>
+                                        <FontAwesomeIcon icon={faSortDown} />
+                                    </span>
+                                </div>
+                            </ManagerPopper>
+                            <ManagerPopper shop={false}>
                                 <div className={cx('manager')}>
                                     Manage
                                     <span style={{ fontSize: 20, marginBottom: 4, marginLeft: 4 }}>

@@ -1,5 +1,5 @@
 import classNames from 'classnames/bind';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import request from '../../api/axios';
 import ObjectItem from '../../components/ObjectItem';
 
@@ -8,7 +8,12 @@ import styles from './CustomerList.module.scss';
 const cx = classNames.bind(styles);
 
 function CustomerList() {
-    const userList = JSON.parse(localStorage.getItem('userList'));
+    const [userList, setUserList] = useState([]);
+    useEffect(() => {
+        request.get('user/list').then((res) => {
+            setUserList(res.data);
+        });
+    });
     return (
         <div className={cx('wrapper')}>
             <h1 className={cx('title')}>Customer List</h1>

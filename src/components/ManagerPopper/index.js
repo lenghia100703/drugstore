@@ -38,15 +38,15 @@ const SHOP_POPPER = [
     },
 ];
 
-function ManagerPopper({ children }) {
+function ManagerPopper({ children, shop }) {
     let POPPER = [];
     const renderItems = () => {
-        // if (userInfo.roles === 'Admin') {
-        //     POPPER = ADMIN_POPPER;
-        // } else if (userInfo.roles === 'Shop') {
-        //     POPPER = SHOP_POPPER;
-        // }
-        return ADMIN_POPPER.map((item, index) => {
+        if (shop) {
+            POPPER = SHOP_POPPER;
+        } else {
+            POPPER = ADMIN_POPPER;
+        }
+        return POPPER.map((item, index) => {
             return (
                 <div
                     className={cx('menu-item', {

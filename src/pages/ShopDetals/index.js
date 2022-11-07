@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import styles from './ShopDetals.module.scss';
 import ProductItem from '../../components/ProductItem';
 import request from '../../api/axios';
+import BookingModal from '../../components/BookingModal';
 
 const cx = classNames.bind(styles);
 
@@ -63,6 +64,7 @@ function ShopDetals() {
     const [shopById, setShopById] = useState({});
     const [ratting, setRatting] = useState({});
     const [good, setGood] = useState([]);
+    const [isOpen, setIsOpen] = useState(false);
 
     const [star1, setStar1] = useState(false);
     const [star2, setStar2] = useState(false);
@@ -72,6 +74,9 @@ function ShopDetals() {
 
     const nameUrl = window.location.href;
     const shopId = nameUrl.replace('http://localhost:2806/medical-shop/', '');
+    const handleOpen = () => {
+        setIsOpen(true);
+    };
 
     let ratingAvg = 0;
 
@@ -156,6 +161,9 @@ function ShopDetals() {
                                 <FontAwesomeIcon icon={faStar} />
                             </span>
                         </div>
+                        <div className={cx('booking')} onClick={handleOpen}>
+                            Book an appointment
+                        </div>
                         <div className={cx('utility-shop')}>
                             <div style={{ color: '#959595' }}>SERVICE BY</div>
                             <div>DrugStore</div>
@@ -180,6 +188,7 @@ function ShopDetals() {
                     </div>
                 </div>
             </div>
+            {isOpen && <BookingModal onOpen={setIsOpen} />}
         </div>
     );
 }

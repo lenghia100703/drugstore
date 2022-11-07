@@ -1,5 +1,7 @@
 import classNames from 'classnames/bind';
 import { useState } from 'react';
+import { unstable_HistoryRouter } from 'react-router-dom';
+import request from '../../api/axios';
 
 import styles from './Password.module.scss';
 
@@ -11,12 +13,19 @@ function Password() {
     const [reNewPassword, setReNewPassword] = useState('');
 
     const handleSubmit = (e) => {
+        e.preventDefault();
         if (oldPassword == '' || newPassword == '' || reNewPassword == '') {
             alert('Please enter ');
         } else if (newPassword !== reNewPassword) {
             alert('Wrong repassword, please try again');
         }
-        e.preventDefault();
+        request
+            .put('http://localhost:8083/api/v1/user/password/reset', {
+                newPassword,
+            })
+            .then((res) => {
+                console.log(res.data);
+            });
     };
 
     return (

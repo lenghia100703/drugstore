@@ -13,26 +13,26 @@ function PatientsItem({ data, count }) {
     useEffect(() => {
         for (let i = 0; i < userList.length; i++) {
             if (data.customerId === userList[i].userId) {
-                setNameCustomer(userList[i].fullName);
-            } else {
-                setNameCustomer('Dao Tan Hai');
+                setNameCustomer(userList[i]);
             }
         }
     }, []);
 
     const handleConfirm = () => {
         setConfirmed(true);
-        request.put(`booking/update`).then((result) => {
-            result.json().then((resp) => {
-                console.warn(resp);
+        request
+            .put(`booking/update`, {
+                confirmed,
+            })
+            .then((res) => {
+                console.log(res.data);
             });
-        });
     };
 
     return (
         <div className={cx('rows-2')} key={count}>
             <div className={cx('col-1', 'col')}>{count + 1}</div>
-            <div className={cx('col-2', 'col')}>{nameCustomer}</div>
+            <div className={cx('col-2', 'col')}>{data.customerId}</div>
             <div className={cx('col-3', 'col')}>{data.startDate}</div>
             <div className={cx('col-4', 'col')}>
                 {confirmed ? (
