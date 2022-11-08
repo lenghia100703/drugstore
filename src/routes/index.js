@@ -24,23 +24,24 @@ const publicRoutes = [
     { path: '/', components: Home, layout: DefaultLayout },
     { path: '/login', components: Login, layout: DefaultLayout },
     { path: '/register', components: Register, layout: DefaultLayout },
+    { path: '/medical-shop/:medicalShopId', components: ShopDetals, layout: DefaultLayout },
+    { path: '/medical-shop/search/keyword=:searchValue', components: DrugStoreList, layout: DefaultLayout },
+];
+
+const privateRoutes = [
     { path: '/user', components: Profile, layout: SidebarLayout },
     { path: '/password', components: Password, layout: SidebarLayout },
     { path: '/address', components: Address, layout: SidebarLayout },
     { path: '/cart', components: Cart, layout: CartLayout },
-    { path: '/history-order', components: HistoryOrder, layout: DefaultLayout },
-    { path: '/medical-shop/:medicalShopId', components: ShopDetals, layout: DefaultLayout },
     { path: '/list-order', components: ListOrder, layout: DefaultLayout },
     { path: '/my-list-order', components: MyListOrder, layout: DefaultLayout },
-    { path: '/medical-shop/search/keyword=:searchValue', components: DrugStoreList, layout: DefaultLayout },
-    { path: '/customer-list', components: CustomerList, layout: DefaultLayout },
-    { path: '/shop-list', components: ShopList, layout: DefaultLayout },
     { path: '/shipper-list', components: ShipperList, layout: DefaultLayout },
     { path: '/list-patients', components: ListPatients, layout: DefaultLayout },
     { path: '/drug-order-list', components: DrugOrderList, layout: DefaultLayout },
     { path: '/my-shop', components: ListProducts, layout: DefaultLayout },
+    { path: '/customer-list', components: CustomerList, layout: DefaultLayout },
+    { path: '/shop-list', components: ShopList, layout: DefaultLayout },
+    { path: '/history-order', components: HistoryOrder, layout: DefaultLayout },
 ];
-
-const privateRoutes = [];
 
 export { publicRoutes, privateRoutes };

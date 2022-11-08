@@ -1,15 +1,22 @@
 import { Fragment } from 'react';
+import { useSelector } from 'react-redux';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import DefaultLayout from './layouts/DefaultLayout';
-import { publicRoutes } from './routes';
+import { privateRoutes, publicRoutes } from './routes';
 
 function App() {
+    const userLogin = useSelector((state) => state.userLogin);
+    const { userInfo } = userLogin;
+    let pages = [...publicRoutes];
+    if (userInfo) {
+        pages.concat(privateRoutes);
+    }
     return (
         <BrowserRouter>
             <div className="App">
                 <Routes>
-                    {publicRoutes.map((route, index) => {
+                    {pages.map((route, index) => {
                         const Page = route.components;
                         let Layout = DefaultLayout;
 
