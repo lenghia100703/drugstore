@@ -10,7 +10,7 @@ function App() {
     const { userInfo } = userLogin;
     let pages = [...publicRoutes];
     if (userInfo) {
-        pages.concat(privateRoutes);
+        pages = publicRoutes.concat(privateRoutes);
     }
     return (
         <BrowserRouter>

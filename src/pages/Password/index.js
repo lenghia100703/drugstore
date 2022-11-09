@@ -19,13 +19,6 @@ function Password() {
         } else if (newPassword !== reNewPassword) {
             alert('Wrong repassword, please try again');
         }
-        request
-            .put('http://localhost:8083/api/v1/user/password/reset', {
-                newPassword,
-            })
-            .then((res) => {
-                console.log(res.data);
-            });
     };
 
     return (

@@ -33,7 +33,7 @@ function Home() {
             setShopNearMe(res.data);
             localStorage.setItem('shopList', JSON.stringify(shopNearMe));
         });
-    }, [shopNearMe]);
+    }, []);
 
     return (
         <div className={cx('wrapper')}>

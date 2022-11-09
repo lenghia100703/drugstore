@@ -6,6 +6,7 @@ import Cart from '../pages/Cart';
 import CustomerList from '../pages/CustomerList';
 import DrugOrderList from '../pages/DrugOrderList';
 import DrugStoreList from '../pages/DrugStoreList';
+import ForgotPass from '../pages/ForgotPass';
 import HistoryOrder from '../pages/HistoryOrder';
 import Home from '../pages/Home';
 import ListOrder from '../pages/ListOrder';
@@ -16,6 +17,7 @@ import MyListOrder from '../pages/MyListOrder';
 import Password from '../pages/Password';
 import Profile from '../pages/Profile';
 import Register from '../pages/Register';
+import ResetPass from '../pages/ResetPass';
 import ShipperList from '../pages/ShipperList';
 import ShopDetals from '../pages/ShopDetals';
 import ShopList from '../pages/ShopList';
@@ -26,6 +28,8 @@ const publicRoutes = [
     { path: '/register', components: Register, layout: DefaultLayout },
     { path: '/medical-shop/:medicalShopId', components: ShopDetals, layout: DefaultLayout },
     { path: '/medical-shop/search/keyword=:searchValue', components: DrugStoreList, layout: DefaultLayout },
+    { path: '/forgot-password', components: ForgotPass, layout: DefaultLayout },
+    { path: '/api/v1/user/password/reset/:token', components: ResetPass, layout: DefaultLayout },
 ];
 
 const privateRoutes = [

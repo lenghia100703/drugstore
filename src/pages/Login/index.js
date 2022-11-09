@@ -77,6 +77,9 @@ function Login() {
                     <Link to="/register" style={{ color: 'white' }}>
                         <button className={cx('register-btn')}>CREATE NEW ACCOUNT</button>
                     </Link>
+                    <Link to="/forgot-password" style={{ color: 'blue' }}>
+                        Forgotten password?
+                    </Link>
                 </form>
             </div>
         </div>
