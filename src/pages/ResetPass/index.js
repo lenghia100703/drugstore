@@ -16,7 +16,12 @@ function ResetPass() {
     const [confirmPassword, setConfirmPassword] = useState('');
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (password !== confirmPassword || password === '' || confirmPassword === '' || token === '') {
+        if (
+            password !== confirmPassword ||
+            password === '' ||
+            confirmPassword === '' ||
+            randomTokenResetPassword === ''
+        ) {
             alert('Please type in again');
             setRandomTokenResetPassword('');
             setPassword('');
@@ -51,7 +56,7 @@ function ResetPass() {
                             type="username"
                             value={randomTokenResetPassword}
                             onChange={(e) => {
-                                setToken(e.target.value);
+                                setRandomTokenResetPassword(e.target.value);
                             }}
                         />
                     </div>
