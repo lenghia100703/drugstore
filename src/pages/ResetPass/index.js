@@ -11,21 +11,21 @@ const cx = classNames.bind(styles);
 function ResetPass() {
     const nameUrl = window.location.href;
     const token_ = nameUrl.replace('http://localhost:8083/api/v1/user/password/reset/', '');
-    const [token, setToken] = useState(token_);
+    const [randomTokenResetPassword, setRandomTokenResetPassword] = useState(token_);
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const handleSubmit = (e) => {
         e.preventDefault();
         if (password !== confirmPassword || password === '' || confirmPassword === '' || token === '') {
             alert('Please type in again');
-            setToken('');
+            setRandomTokenResetPassword('');
             setPassword('');
             setConfirmPassword('');
         }
         axios
             .put('http://localhost:8083/api/v1/user/password/reset', {
-                password: password,
-                confirmPassword: confirmPassword,
+                randomTokenResetPassword,
+                password,
             })
             .then((res) => {
                 if (res.status === 200) {
@@ -49,7 +49,7 @@ function ResetPass() {
                             placeholder="Enter your token"
                             className={cx('input')}
                             type="username"
-                            value={token}
+                            value={randomTokenResetPassword}
                             onChange={(e) => {
                                 setToken(e.target.value);
                             }}

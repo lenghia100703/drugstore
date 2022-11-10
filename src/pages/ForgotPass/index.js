@@ -11,7 +11,6 @@ const cx = classNames.bind(styles);
 
 function ForgotPass() {
     const [userName, setUsername] = useState('');
-    const navigate = useNavigate();
     const handleSubmit = (e) => {
         e.preventDefault();
         axios
