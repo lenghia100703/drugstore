@@ -10,7 +10,7 @@ const cx = classNames.bind(styles);
 
 function ResetPass() {
     const nameUrl = window.location.href;
-    const token_ = nameUrl.replace('http://localhost:8083/api/v1/user/password/reset/', '');
+    const token_ = nameUrl.replace('http://localhost:8084/api/v1/user/password/reset/', '');
     const [randomTokenResetPassword, setRandomTokenResetPassword] = useState(token_);
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
@@ -29,12 +29,17 @@ function ResetPass() {
         }
         axios
             .put('http://localhost:8083/api/v1/user/password/reset', {
-                randomTokenResetPassword,
-                password,
+                headers: {
+                    Authorization: 'Bearer ' + randomTokenResetPassword,
+                },
+                data: {
+                    password: password,
+                },
             })
             .then((res) => {
                 if (res.status === 200) {
                     alert('Reset password successfully');
+                    console.log(JSON.parse(res.config.data).data);
                 }
             });
     };
