@@ -11,6 +11,8 @@ function App() {
     let pages = [...publicRoutes];
     if (userInfo) {
         pages = publicRoutes.concat(privateRoutes);
+    } else {
+        pages = [...publicRoutes];
     }
     return (
         <BrowserRouter>
