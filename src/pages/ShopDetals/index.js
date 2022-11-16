@@ -73,7 +73,7 @@ function ShopDetals() {
     const [star5, setStar5] = useState(false);
 
     const nameUrl = window.location.href;
-    const shopId = nameUrl.replace('http://localhost:2806/medical-shop/', '');
+    const shopId = nameUrl.replace('http://localhost:8084/medical-shop/', '');
     const handleOpen = () => {
         setIsOpen(true);
     };

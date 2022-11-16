@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import styles from './Register.module.scss';
+import axios from 'axios';
 
 const cx = classNames.bind(styles);
 
@@ -15,12 +16,31 @@ function Register() {
     const [rePassword, setRePassword] = useState('');
 
     const handleSubmit = (e) => {
+        e.preventDefault();
         if (password !== rePassword) {
             alert('Wrong repassword, please try again');
         } else {
             alert(`username: ${username}, password: ${password}`);
         }
-        e.preventDefault();
+        axios
+            .post('http://localhost:8083/api/v1/user/new', {
+                userName: 'testacc123',
+                password: '123123',
+                email: 'testacc123@gmail.com',
+                fullName: 'Dao Tan Hai sa',
+                address: 'Xô Viết Nghệ Tĩnh, Hòa Cường Nam, Hải Châu, Đà Nẵng',
+                identityNumber: '121123123154',
+                phoneNumber: '03244632321',
+                streetNumber: '10',
+                postCode: '550000',
+                rolesNames: ['User'],
+            })
+            .then((response) => {
+                console.log(response);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     };
     return (
         <div className={cx('wrapper')}>
