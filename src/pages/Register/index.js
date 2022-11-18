@@ -22,25 +22,31 @@ function Register() {
         } else {
             alert(`username: ${username}, password: ${password}`);
         }
-        axios
-            .post('http://localhost:8083/api/v1/user/new', {
-                userName: 'testacc123',
-                password: '123123',
-                email: 'testacc123@gmail.com',
-                fullName: 'Dao Tan Hai sa',
-                address: 'Xô Viết Nghệ Tĩnh, Hòa Cường Nam, Hải Châu, Đà Nẵng',
-                identityNumber: '121123123154',
-                phoneNumber: '03244632321',
-                streetNumber: '10',
-                postCode: '550000',
-                rolesNames: ['User'],
-            })
-            .then((response) => {
-                console.log(response);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+        var myHeaders = new Headers();
+        myHeaders.append(
+            'Authorization',
+            'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJBZG1pbiJdLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjkwMDAvYXBpL3YxL3VzZXIvbG9naW4iLCJ1c2VyTmFtZSI6ImFkbWluIiwiZXhwIjoxNjk1MzE0Nzk2LCJ1c2VySWQiOiJ1c2VyXzEifQ.BQgD3tve1zC0Rov3_JkzVLVPUrtf32esnts_EXx5c2E',
+        );
+
+        var formdata = new FormData();
+        formdata.append(
+            'userDTO',
+            '{\n    "userName": "testacc123",\n    "password": "123123213",\n    "email": "testacc324@gmail.com",\n    "fullName": "Dao Tan Hai",\n    "address": "Xô Viết Nghệ Tĩnh, Hòa Cường Nam, Hải Châu, Đà Nẵng",\n    "identityNumber": "121123123123",\n    "phoneNumber": "0324463258",\n    "streetNumber": "10",\n    "postCode": "550000",\n    "rolesNames": ["User"]\n}',
+        );
+
+        var requestOptions = {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/x-www-form-urlencoded',
+            },
+            body: formdata,
+            redirect: 'follow',
+        };
+
+        fetch('http://localhost:8083/api/v1/user/new', requestOptions)
+            .then((response) => response.text())
+            .then((result) => console.log(result))
+            .catch((error) => console.log('error', error));
     };
     return (
         <div className={cx('wrapper')}>
