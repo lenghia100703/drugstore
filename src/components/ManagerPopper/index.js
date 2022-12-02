@@ -11,16 +11,12 @@ const cx = classNames.bind(styles);
 const ADMIN_POPPER = [
     {
         to: '/customer-list',
-        title: 'Manage customer list',
+        title: 'Manage Users',
     },
     {
         to: '/shop-list',
-        title: 'Manage shop list',
-    },
-    {
-        to: '/shipper-list',
-        title: 'Manage shipper list',
-    },
+        title: 'Manage Shops',
+    }
 ];
 
 const SHOP_POPPER = [

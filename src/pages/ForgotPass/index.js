@@ -1,9 +1,9 @@
 import { faUser } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import axios from 'axios';
 import classNames from 'classnames/bind';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { notification } from 'antd';
+import request from '../../api/axios';
 
 import styles from './ForgotPass.module.scss';
 
@@ -11,25 +11,33 @@ const cx = classNames.bind(styles);
 
 function ForgotPass() {
     const [userName, setUsername] = useState('');
+    const [api, contextHolder] = notification.useNotification();
+    const openNotificationWithIcon = (type) => {
+        api[type]({
+            message: type === "success" ? "" : 'Failed',
+            description: type === "success" ?
+                'Please check your mail' : 'Username wrong. Please try again',
+            duration: 1.5
+        });
+    };
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios
-            .put('http://localhost:8083/api/v1/user/password/reset', {
-                userName,
+        request.put('user/password/reset', {
+            userName,
+        })
+            .then(() => {
+                openNotificationWithIcon("success")
             })
-            .then((res) => {
-                if (res.status == 200) {
-                    alert('Please check mail');
-                } else {
-                    alert('Username wrong. Please try again');
-                }
+            .catch(() => {
+                openNotificationWithIcon("error")
             });
     };
     return (
         <div className={cx('wrapper')}>
+            {contextHolder}
             <div className={cx('container')}>
                 <div className={cx('logo')}>
-                    <h1>DRUG STORE</h1>
+                    <h1>ODC19</h1>
                 </div>
                 <form className={cx('content')} onSubmit={handleSubmit}>
                     <div className={cx('title')}>

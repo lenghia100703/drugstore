@@ -83,25 +83,25 @@ function BillModal({ onOpen, data }) {
                                 <td>{index + 1}</td>
                                 <td>{item.nameproduct}</td>
                                 <td style={{ textAlign: 'center' }}>{item.countOfItems}</td>
-                                <td style={{ textAlign: 'right' }}>{item.totalCost}đ</td>
+                                <td style={{ textAlign: 'right' }}>{item.totalCost}$</td>
                             </tr>
                         ))}
                         <tr>
                             <td colSpan={2}>Total:</td>
                             <td colSpan={2} style={{ textAlign: 'right' }}>
-                                {data.totalPrice}đ
+                                {data.totalPrice}$
                             </td>
                         </tr>
                         <tr>
                             <td colSpan={2}>Shipping Fee:</td>
                             <td colSpan={2} style={{ textAlign: 'right' }}>
-                                +15000đ
+                                +1$
                             </td>
                         </tr>
                         <tr>
                             <td colSpan={2}>Discount:</td>
                             <td colSpan={2} style={{ textAlign: 'right' }}>
-                                -20000đ
+                                -2$
                             </td>
                         </tr>
                         <tr>
@@ -109,7 +109,7 @@ function BillModal({ onOpen, data }) {
                                 Total Price:
                             </td>
                             <td colSpan={2} style={{ textAlign: 'right' }}>
-                                {data.totalPrice + 15000 - 20000}đ
+                                {data.totalPrice + 15000 - 20000}$
                             </td>
                         </tr>
                     </table>

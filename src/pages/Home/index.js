@@ -1,13 +1,12 @@
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAngleRight, faArrowRightLong, faMagnifyingGlass, faRotateRight } from '@fortawesome/free-solid-svg-icons';
+import { faAngleRight, faArrowRightLong, faRotateRight } from '@fortawesome/free-solid-svg-icons';
 import { useEffect, useState } from 'react';
 
 import styles from './Home.module.scss';
 import request from '../../api/axios';
 import Search from '../../components/Search';
 import ShopItem from '../../components/ShopItem';
-import Map from '../../components/Map';
 import AddressModal from '../../components/AddressModal';
 
 const cx = classNames.bind(styles);

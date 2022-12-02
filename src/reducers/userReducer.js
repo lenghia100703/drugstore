@@ -1,4 +1,4 @@
-import { USER_LOGIN_FAIL, USER_LOGIN_REQUEST, USER_LOGIN_SUCCESS, USER_LOGOUT } from '../constants/userConstant';
+import { USER_LOGIN_FAIL, USER_LOGIN_REQUEST, USER_LOGIN_SUCCESS, USER_LOGOUT, USER_CHANGE_PASS } from '../constants/userConstant';
 
 export const userLoginReducer = (state = {}, action) => {
     switch (action.type) {
@@ -10,6 +10,8 @@ export const userLoginReducer = (state = {}, action) => {
             return { loading: false, error: action.payload };
         case USER_LOGOUT:
             return {};
+        case USER_CHANGE_PASS:
+            state = {}
         default:
             return state;
     }

@@ -1,35 +1,33 @@
 import classNames from 'classnames/bind';
-import { useEffect, useState } from 'react';
-
 import styles from './Cart.module.scss';
 import CartItem from '../../components/CartItem';
-import request from '../../api/axios';
-import { products } from '../../components/ProductItem';
 import { useSelector } from 'react-redux';
-
+import { useEffect, useState } from 'react';
+import ModalCheckout from './ModalCheckout';
 const cx = classNames.bind(styles);
 
-// export const LIST_ORDER = [
 
 function Cart() {
-    const cart = useSelector((state) => state.cart);
-    const { numberCart, Carts } = cart;
-    const [countOfProduct, setCountOfProduct] = useState(() => {
-        // let count;
-        // for (let i = 0; i < LIST_ORDER.length; i++) {
-        //     count = LIST_ORDER[i].countOfProduct;
-        // }
-        // return count;
-    });
-    const [list, setList] = useState([]);
+    const state = useSelector((state) => state.cart)
+    const [open, setOpen] = useState(false);
+    const [carts, setCarts] = useState({
+        numberCart: 0,
+        Carts: [],
+        _products: [],
+    })
+    useEffect(() => {
+        setCarts(state)
+    }, [state])
 
-    const [totalProduct, setTotalProduct] = useState(() => {
-        // let sum = 0;
-        // for (let i = 0; i < LIST_ORDER.length; i++) {
-        //     sum += LIST_ORDER[i].countOfProduct;
-        // }
-        // return sum;
-    });
+    const calculateMoney = () => {
+        let money = 0
+        carts.Carts.map(
+            (item) => {
+                money += item.quantity * item.price
+            }
+        )
+        return money
+    }
 
     return (
         <div className={cx('wrapper')}>
@@ -48,19 +46,21 @@ function Cart() {
                     </div>
                 </div>
                 <div className={cx('table-product-body')}>
-                    {Carts.map((item, index) => (
+                    {carts.Carts.map((item, index) => (
                         <CartItem item={item} key={index} />
                     ))}
                 </div>
                 <div className={cx('pay')}>
                     <span style={{ marginLeft: 22 }}>
-                        Total (<span>{numberCart}</span> products)
+                        Total: <b>{calculateMoney()}$ </b>
+                        (<span>{carts.numberCart}</span> products)
                     </span>
                     <span>
-                        <button className={cx('pay-btn')}>Check out</button>
+                        <button className={cx('pay-btn')} onClick={() => setOpen(true)}>Check out</button>
                     </span>
                 </div>
             </div>
+            <ModalCheckout open={open} setOpen={setOpen} />
         </div>
     );
 }

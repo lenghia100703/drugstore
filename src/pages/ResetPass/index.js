@@ -3,17 +3,31 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
 import classNames from 'classnames/bind';
 import { useState } from 'react';
-
+import { useParams } from 'react-router-dom'
+import request from '../../api/axios';
 import styles from './ResetPass.module.scss';
+import { notification } from 'antd';
+import { useNavigate } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
 function ResetPass() {
     const nameUrl = window.location.href;
-    const token_ = nameUrl.replace('http://localhost:8084/api/v1/user/password/reset/', '');
+    const params = useParams();
+    const token_ = params.token
+    const [api, contextHolder] = notification.useNotification();
+    const openNotificationWithIcon = (type) => {
+        api[type]({
+            message: type === "success" ? "" : 'Reset password failed',
+            description: type === "success" ?
+                'Reset password successful' : 'Please try again or check matching between password and re-password!',
+            duration: 1.5
+        });
+    };
     const [randomTokenResetPassword, setRandomTokenResetPassword] = useState(token_);
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+    const navigate = useNavigate();
     const handleSubmit = (e) => {
         e.preventDefault();
         if (
@@ -22,48 +36,31 @@ function ResetPass() {
             confirmPassword === '' ||
             randomTokenResetPassword === ''
         ) {
-            alert('Please type in again');
-            setRandomTokenResetPassword('');
-            setPassword('');
-            setConfirmPassword('');
+            openNotificationWithIcon("error")
         }
-        axios
-            .put('http://localhost:8083/api/v1/user/password/reset', {
-                headers: {
-                    Authorization: 'Bearer ' + randomTokenResetPassword,
-                },
-                data: {
-                    password: password,
-                },
+        else {
+            request.put('user/password/reset', {
+                password: password,
+                randomTokenResetPassword: randomTokenResetPassword
             })
-            .then((res) => {
-                if (res.status === 200) {
-                    alert('Reset password successfully');
-                    console.log(JSON.parse(res.config.data).data);
-                }
-            });
+                .then((res) => {
+                    openNotificationWithIcon("success")
+                    setTimeout(() => {
+                        navigate("/login")
+                    }, 2000)
+                })
+                .catch(() => {
+                    openNotificationWithIcon("error")
+                });
+        }
     };
     return (
         <div className={cx('wrapper')}>
+            {contextHolder}
             <div className={cx('container')}>
-                <div className={cx('logo')}>
-                    <h1>DRUG STORE</h1>
-                </div>
                 <form className={cx('content')} onSubmit={handleSubmit}>
                     <div className={cx('title')}>
                         <h2>Reset Password</h2>
-                    </div>
-                    <div className={cx('input-form')}>
-                        <FontAwesomeIcon icon={faKey} style={{ marginRight: 8 }} />
-                        <input
-                            placeholder="Enter your token"
-                            className={cx('input')}
-                            type="username"
-                            value={randomTokenResetPassword}
-                            onChange={(e) => {
-                                setRandomTokenResetPassword(e.target.value);
-                            }}
-                        />
                     </div>
                     <div className={cx('input-form')}>
                         <FontAwesomeIcon icon={faLock} style={{ marginRight: 8 }} />

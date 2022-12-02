@@ -7,6 +7,7 @@ export const GET_NUMBER_CART = 'GET_NUMBER_CART';
 export const ADD_CART = 'ADD_CART';
 export const UPDATE_CART = 'UPDATE_CART';
 export const DELETE_CART = 'DELETE_CART';
+export const CHANGE_IS_SELECTION = 'CHANGE_IS_SELECTION';
 
 export const actFetchProductsRequest = () => {
     return (dispatch) => {
@@ -59,6 +60,12 @@ export function IncreaseQuantity(payload) {
 export function DecreaseQuantity(payload) {
     return {
         type: 'DECREASE_QUANTITY',
+        payload,
+    };
+}
+export function ChangeIsSelection(payload) {
+    return {
+        type: 'CHANGE_IS_SELECTION',
         payload,
     };
 }

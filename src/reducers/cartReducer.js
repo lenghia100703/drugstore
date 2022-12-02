@@ -1,4 +1,3 @@
-import { combineReducers } from 'redux';
 import {
     GET_ALL_PRODUCT,
     GET_NUMBER_CART,
@@ -6,12 +5,13 @@ import {
     DECREASE_QUANTITY,
     INCREASE_QUANTITY,
     DELETE_CART,
+    CHANGE_IS_SELECTION
 } from '../actions/cartAction';
 
 const tempProduct = localStorage.getItem('carts') ? JSON.parse(localStorage.getItem('carts')) : [];
 
 const initProduct = {
-    numberCart: 0,
+    numberCart: tempProduct.length,
     Carts: tempProduct,
     _products: [],
 };
@@ -28,46 +28,48 @@ export const todoProduct = (state = initProduct, action) => {
                 ...state,
             };
         case ADD_CART:
-            if (state.numberCart == 0) {
+            if (state.numberCart === 0) {
                 let cart = {
                     goodsId: action.payload.goodsId,
-                    quantity: action.payload.quantity,
+                    quantity: 1,
                     goodsName: action.payload.goodsName,
                     goodsUrlImage: action.payload.goodsUrlImage,
                     price: action.payload.price,
                     medicalShopId: action.payload.medicalShopId,
+                    isSelection: false
                 };
                 state.Carts.push(cart);
+                state.numberCart = state.numberCart + 1
             } else {
-                let check = false;
+                let isExisting = false
                 state.Carts.map((item, key) => {
-                    if (item.goodsId == action.payload.goodsId) {
+                    if (item.goodsId === action.payload.goodsId) {
                         state.Carts[key].quantity++;
-                        check = true;
+                        isExisting = true;
                     }
                 });
-                if (!check) {
-                    let _cart = {
+                if (!isExisting) {
+                    let cart = {
                         goodsId: action.payload.goodsId,
-                        quantity: action.payload.quantity,
+                        quantity: 1,
                         goodsName: action.payload.goodsName,
                         goodsUrlImage: action.payload.goodsUrlImage,
                         price: action.payload.price,
                         medicalShopId: action.payload.medicalShopId,
+                        isSelection: false
                     };
-                    state.Carts.push(_cart);
+                    state.Carts.push(cart);
+                    state.numberCart = state.numberCart + 1
                 }
             }
             localStorage.setItem('carts', JSON.stringify(state.Carts));
             return {
-                ...state,
-                numberCart: state.numberCart + 1,
+                ...state
             };
         case INCREASE_QUANTITY:
             state.numberCart++;
             state.Carts[state.Carts.indexOf(action.payload)].quantity++;
-            console.log(action.payload.quantity);
-
+            localStorage.setItem('carts', JSON.stringify(state.Carts));
             return {
                 ...state,
             };
@@ -77,20 +79,28 @@ export const todoProduct = (state = initProduct, action) => {
                 state.numberCart--;
                 state.Carts[state.Carts.indexOf(action.payload)].quantity--;
             }
-            console.log(action.payload.quantity);
-
+            localStorage.setItem('carts', JSON.stringify(state.Carts));
             return {
                 ...state,
             };
         case DELETE_CART:
-            //let quantity_ = state.Carts[state.Carts.indexOf(action.payload)].quantity;
-            localStorage.setItem('carts', JSON.stringify([]));
-            return {
+            let items = {
                 ...state,
                 numberCart: state.numberCart - 1,
                 Carts: state.Carts.filter((item) => {
-                    return item.goodsId != state.Carts[state.Carts.indexOf(action.payload)].goodsId;
+                    return item.goodsId !== action.payload.goodsId;
                 }),
+            };
+            localStorage.setItem('carts', JSON.stringify(items.Carts));
+            return {
+                ...items
+            };
+        case CHANGE_IS_SELECTION:
+            let good = state.Carts.find(({ goodsId }) => goodsId === action.payload.goodsId)
+            good.isSelection = action.payload.isSelection
+            localStorage.setItem('carts', JSON.stringify(state.Carts));
+            return {
+                ...state,
             };
         default:
             return state;

@@ -50,7 +50,7 @@ function ListDrugOrder({ data, count }) {
             <div className={cx('col-2', 'col')}>{nameCustomer}</div>
             <div className={cx('col-3', 'col')}>{data.deliverToAddress}</div>
             <div className={cx('col-4', 'col')}>
-                <div>{data.totalPrice}đ</div>
+                <div>{data.totalPrice}$</div>
                 <div>{countOfItems} items</div>
             </div>
             <div className={cx('col-5', 'col')}>

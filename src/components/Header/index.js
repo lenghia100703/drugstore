@@ -15,6 +15,10 @@ const cx = classNames.bind(styles);
 function Header() {
     const userLogin = useSelector((state) => state.userLogin);
     const { userInfo } = userLogin;
+    const userData = JSON.parse(localStorage.getItem("userData"))
+    const imageUrls = userData?.identityCardUrl
+    const imageUrl = imageUrls?.substring(1, imageUrls.length - 1)
+    const role = userData?.roleNames ?? []
 
     return (
         <div className={cx('wrapper')}>
@@ -22,15 +26,15 @@ function Header() {
                 <div className={cx('left')}>
                     <div className={cx('logo')}>
                         <Link to="/">
-                            <h2>DRUG STORE</h2>
+                            <h2>ODC19</h2>
                         </Link>
                     </div>
                 </div>
                 <div className={cx('right')}>
                     {userInfo ? (
                         <div className={cx('user')}>
-                            <ManagerPopper shop={true}>
-                                <div className={cx('manager')}>
+                            <ManagerPopper shop={true} >
+                                <div className={cx('manager')} style={(role.includes("ShopOwner")) ? { display: "block" } : { display: "none" }}>
                                     Shop Owner
                                     <span style={{ fontSize: 20, marginBottom: 4, marginLeft: 4 }}>
                                         <FontAwesomeIcon icon={faSortDown} />
@@ -38,7 +42,7 @@ function Header() {
                                 </div>
                             </ManagerPopper>
                             <ManagerPopper shop={false}>
-                                <div className={cx('manager')}>
+                                <div className={cx('manager')} style={role.includes("Admin") ? { display: "block" } : { display: "none" }}>
                                     Manage
                                     <span style={{ fontSize: 20, marginBottom: 4, marginLeft: 4 }}>
                                         <FontAwesomeIcon icon={faSortDown} />
@@ -52,7 +56,7 @@ function Header() {
                             </NotiPopper>
                             <UserPopper>
                                 <img
-                                    src={'https://upload.wikimedia.org/wikipedia/vi/1/1d/Manchester_City_FC_logo.svg'}
+                                    src={imageUrl}
                                     className={cx('avt-user')}
                                 />
                             </UserPopper>

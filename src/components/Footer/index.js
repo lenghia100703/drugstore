@@ -6,8 +6,8 @@ const cx = classNames.bind(styles);
 
 function Footer() {
     return (
-        <div className={cx('wrapper')}>
-            <div className={cx('inner')}>Copyright &copy; 2022 Drug Store</div>
+        <div className={cx('wrapper')} style={{ zIndex: "999" }}>
+            <div className={cx('inner')}>Copyright &copy; 2022 ODC19</div>
         </div>
     );
 }

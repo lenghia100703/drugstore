@@ -2,19 +2,26 @@ import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
 import { faLock, faXmark } from '@fortawesome/free-solid-svg-icons';
-import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { login } from '../../actions/userAction';
 import { useDispatch, useSelector } from 'react-redux';
+import {notification } from 'antd';
 
 import styles from './Login.module.scss';
-import request from '../../api/axios';
 
 const cx = classNames.bind(styles);
 
 function Login() {
-    let CUSTOMER_LIST = [];
+    const [api, contextHolder] = notification.useNotification();
+    const openNotificationWithIcon = (type) => {
+        api[type]({
+            message: type === "success" ? "" : 'Login failed',
+            description: type === "success" ?
+                'Login successful' : 'Please check your username and password again!',
+            duration: 1.5
+        });
+    };
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
@@ -26,20 +33,23 @@ function Login() {
 
     useEffect(() => {
         if (userInfo) {
-            navigate('/');
+            setTimeout(() => {
+                navigate('/');
+            }, 2000)
         }
     }, [userInfo, navigate]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(login(username, password));
+        let a = dispatch(login(username, password))
+        a.then((res) => {
+            openNotificationWithIcon(res)
+        })
     };
     return (
         <div className={cx('wrapper')}>
+            {contextHolder}
             <div className={cx('container')}>
-                <div className={cx('logo')}>
-                    <h1>DRUG STORE</h1>
-                </div>
                 <form className={cx('content')} onSubmit={handleSubmit}>
                     <div className={cx('close-btn')}>
                         <FontAwesomeIcon icon={faXmark} />

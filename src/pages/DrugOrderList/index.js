@@ -1,39 +1,10 @@
 import classNames from 'classnames/bind';
-import ShipItem from '../../components/ShipItem';
-import PatientsItem from '../../components/PatientsItem';
-
 import styles from './DrugOrderList.module.scss';
 import ListDrugOrder from '../../components/ListDrugOrder';
 import request from '../../api/axios';
 import { useEffect, useState } from 'react';
 
 const cx = classNames.bind(styles);
-
-const LIST_ORDER = [
-    {
-        id: '14141-1231241',
-        orderedTime: '24/09/2022 11:45',
-        deliveredTime: '14/10/2022 12:40',
-        nameshop: 'Nhà Thuốc EcoPharmaceuticals',
-        address: '33 Lê Ngã, P. Phú Trung, Tân Phú, TP. HCM',
-        nameCustomer: 'Tạ Đức Mạnh',
-        phoneCustomer: '01234567',
-        addressCustomer: '60 Lê Ngã, P. Phú Trung, Tân Phú, HN',
-        listOfProducts: [
-            {
-                nameproduct: 'Thuốc đau đầu',
-                countOfItems: 2,
-                totalCost: 73000,
-            },
-            {
-                nameproduct: 'Men tiêu hóa',
-                countOfItems: 1,
-                totalCost: 60000,
-            },
-        ],
-        status: false,
-    },
-];
 
 function DrugOrderList() {
     const [listOrder, setListOrder] = useState([]);

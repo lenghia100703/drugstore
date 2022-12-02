@@ -1,7 +1,6 @@
 import classNames from 'classnames/bind';
 import { useEffect, useState } from 'react';
 import PatientsItem from '../../components/PatientsItem';
-import ShipItem from '../../components/ShipItem';
 
 import styles from './ListPatients.module.scss';
 import request from '../../api/axios';

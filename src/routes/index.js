@@ -2,6 +2,7 @@ import CartLayout from '../layouts/CartLayout';
 import DefaultLayout from '../layouts/DefaultLayout';
 import SidebarLayout from '../layouts/SidebarLayout';
 import Address from '../pages/Address';
+import Booking from '../pages/Booking';
 import Cart from '../pages/Cart';
 import CustomerList from '../pages/CustomerList';
 import DrugOrderList from '../pages/DrugOrderList';
@@ -26,10 +27,10 @@ const publicRoutes = [
     { path: '/', components: Home, layout: DefaultLayout },
     { path: '/login', components: Login, layout: DefaultLayout },
     { path: '/register', components: Register, layout: DefaultLayout },
-    { path: '/medical-shop/:medicalShopId', components: ShopDetals, layout: DefaultLayout },
+    { path: '/medical-shop/:id', components: ShopDetals, layout: DefaultLayout },
     { path: '/medical-shop/search/keyword=:searchValue', components: DrugStoreList, layout: DefaultLayout },
     { path: '/forgot-password', components: ForgotPass, layout: DefaultLayout },
-    { path: '/api/v1/user/password/reset/:token', components: ResetPass, layout: DefaultLayout },
+    { path: '/user/password/reset/:token', components: ResetPass, layout: DefaultLayout },
 ];
 
 const privateRoutes = [
@@ -46,6 +47,7 @@ const privateRoutes = [
     { path: '/customer-list', components: CustomerList, layout: DefaultLayout },
     { path: '/shop-list', components: ShopList, layout: DefaultLayout },
     { path: '/history-order', components: HistoryOrder, layout: DefaultLayout },
+    { path: 'booking', components: Booking, layout: DefaultLayout }
 ];
 
 export { publicRoutes, privateRoutes };

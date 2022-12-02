@@ -2,11 +2,11 @@ import classNames from 'classnames/bind';
 import { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
-
+import { Button } from 'antd';
 import styles from './CartItem.module.scss';
 import request from '../../api/axios';
 import { useDispatch } from 'react-redux';
-import { DecreaseQuantity, DeleteCart, IncreaseQuantity } from '../../actions/cartAction';
+import { DecreaseQuantity, DeleteCart, IncreaseQuantity, ChangeIsSelection } from '../../actions/cartAction';
 
 const cx = classNames.bind(styles);
 
@@ -16,8 +16,7 @@ function CartItem({ item }) {
             setShop(res.data);
         });
     }, []);
-    const [visible, setVisible] = useState(true);
-    const [countOfProduct, setCountOfProduct] = useState(parseInt(item.quantity));
+    const [visible] = useState(true);
     const [shop, setShop] = useState({});
     const dispatch = useDispatch();
     const handleSub = (data) => {
@@ -36,7 +35,7 @@ function CartItem({ item }) {
             {visible ? (
                 <div className={cx('rows-1')}>
                     <div className={cx('col-5', 'col')}>
-                        <input type="checkbox" />
+                        <input type="checkbox" onChange={(e) => { dispatch(ChangeIsSelection({ ...item, isSelection: e.target.checked })) }} />
                     </div>
                     <div className={cx('col-1', 'col')}>
                         <img src={item.goodsUrlImage} className={cx('img')} />
@@ -58,10 +57,12 @@ function CartItem({ item }) {
                         </div>
                     </div>
                     <div className={cx('col-3', 'col')} style={{ color: '#ee4d2d' }}>
-                        {item.quantity * item.price}đ
+                        {item.quantity * item.price}$
                     </div>
                     <div className={cx('col-4', 'col')}>
-                        <button onClick={() => handleClear(item)}>Delete</button>
+                        <Button danger type="text" onClick={() => handleClear(item)}>
+                            Delete
+                        </Button>
                     </div>
                 </div>
             ) : (

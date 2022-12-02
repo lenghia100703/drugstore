@@ -1,7 +1,7 @@
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
-import { faArrowRightFromBracket, faCartShopping } from '@fortawesome/free-solid-svg-icons';
+import { faArrowRightFromBracket, faCartShopping, faVideoCamera } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import HeadlessTippy from '@tippyjs/react/headless';
 import { useDispatch, useSelector } from 'react-redux';
@@ -26,6 +26,11 @@ const USER_POPPER = [
         to: '/history-order',
         icon: <FontAwesomeIcon icon={faCartShopping} />,
         title: 'Order History',
+    },
+    {
+        to: '/booking',
+        icon: <FontAwesomeIcon icon={faVideoCamera} />,
+        title: 'View booking',
     },
     {
         icon: <FontAwesomeIcon icon={faArrowRightFromBracket} />,
@@ -106,13 +111,18 @@ const SHOP_POPPER = [
         title: 'Log Out',
         separate: true,
     },
+    {
+        to: '/booking',
+        icon: <FontAwesomeIcon icon={faVideoCamera} />,
+        title: 'View Booking',
+    },
 ];
 
 function UserPopper({ children }) {
     const dispatch = useDispatch();
     const userLogin = useSelector((state) => state.userLogin);
     const { userInfo } = userLogin;
-    const defaultFn = () => {};
+    const defaultFn = () => { };
     const handleLogOut = () => {
         dispatch(logout());
     };

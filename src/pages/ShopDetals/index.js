@@ -1,7 +1,9 @@
 import classNames from 'classnames/bind';
+import { Image, Rate } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircle, faMagnifyingGlass, faStar } from '@fortawesome/free-solid-svg-icons';
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
 import styles from './ShopDetals.module.scss';
 import ProductItem from '../../components/ProductItem';
@@ -10,184 +12,97 @@ import BookingModal from '../../components/BookingModal';
 
 const cx = classNames.bind(styles);
 
-export const LIST_PRODUCT = [
-    {
-        img: 'https://images.foody.vn/res/g95/947252/s120x120/76ffc88d-251e-4e57-b631-38b8494853a1.jpg',
-        nameproduct: 'Thuốc trị chóng mặt Taginyl 500mg',
-        nameshop: 'Nhà Thuốc EcoPharmaceuticals',
-        countorder: 10,
-        price: 17000,
-        namegroup: 'thuocroiloantiendinh',
-        nametitle: 'THUỐC RỐI LOẠN TIỀN ĐÌNH',
-        detalsproduct: 'Giảm chóng mặt ngay tức thì ...',
-    },
-    {
-        img: 'https://images.foody.vn/res/g11/102018/s120x120/2018813151644-bio-accimingold.jpg',
-        nameproduct: 'Thuốc trị chóng mặt Taginyl 500mg',
-        nameshop: 'Nhà Thuốc EcoPharmaceuticals',
-        countorder: 10,
-        price: 17000,
-        namegroup: 'thuocroiloantiendinh',
-        nametitle: 'THUỐC RỐI LOẠN TIỀN ĐÌNH',
-        detalsproduct: 'Hết đau bụng tức thì ...',
-    },
-    {
-        img: 'https://images.foody.vn/res/g95/947252/s120x120/76ffc88d-251e-4e57-b631-38b8494853a1.jpg',
-        nameproduct: 'Thuốc trị chóng mặt Taginyl 500mg',
-        nameshop: 'Nhà Thuốc EcoPharmaceuticals',
-        countorder: 10,
-        price: 17000,
-        namegroup: 'thuocroiloantiendinh',
-        nametitle: 'THUỐC RỐI LOẠN TIỀN ĐÌNH',
-    },
-    {
-        img: 'https://images.foody.vn/res/g95/947252/s120x120/76ffc88d-251e-4e57-b631-38b8494853a1.jpg',
-        nameproduct: 'Thuốc trị chóng mặt Taginyl 500mg',
-        nameshop: 'Nhà Thuốc EcoPharmaceuticals',
-        countorder: 10,
-        price: 17000,
-        namegroup: 'thuocroiloantiendinh',
-        nametitle: 'THUỐC RỐI LOẠN TIỀN ĐÌNH',
-    },
-    {
-        img: 'https://images.foody.vn/res/g11/102018/s120x120/2018813151644-bio-accimingold.jpg',
-        nameproduct: 'Thuốc trị chóng mặt Taginyl 500mg',
-        nameshop: 'Nhà Thuốc EcoPharmaceuticals',
-        countorder: 10,
-        price: 17000,
-        namegroup: 'thuocroiloantiendinh',
-        nametitle: 'THUỐC RỐI LOẠN TIỀN ĐÌNH',
-    },
-];
-
 function ShopDetals() {
-    const [shopById, setShopById] = useState({});
-    const [ratting, setRatting] = useState({});
-    const [good, setGood] = useState([]);
+    const [shopById, setShopById] = useState({ "goodsDTOS": [] });
+    const [goods, setGoods] = useState([]);
+    const [comments, setComments] = useState([])
     const [isOpen, setIsOpen] = useState(false);
-
-    const [star1, setStar1] = useState(false);
-    const [star2, setStar2] = useState(false);
-    const [star3, setStar3] = useState(false);
-    const [star4, setStar4] = useState(false);
-    const [star5, setStar5] = useState(false);
-
-    const nameUrl = window.location.href;
-    const shopId = nameUrl.replace('http://localhost:8084/medical-shop/', '');
+    const [isProduct, setIsProduct] = useState(true)
+    let { id } = useParams();
     const handleOpen = () => {
         setIsOpen(true);
     };
 
-    let ratingAvg = 0;
 
     useEffect(() => {
-        request.get(`medical-shop/${shopId}`).then((res) => {
+        request.get(`medical-shop/${id}`).then((res) => {
             setShopById(res.data);
+            setGoods(res.data.goodsDTOS)
         });
-        request.get(`rating/list/medicalshop/${shopId}`).then((res) => {
-            setRatting(res.data);
-        });
-        request.get(`medical-shop/goods/goods1`).then((res) => {
-            if (shopId === res.data.medicalShopId) {
-                good.push(res.data);
-            }
-        });
-        request.get(`medical-shop/goods/goods2`).then((res) => {
-            if (shopId === res.data.medicalShopId) {
-                good.push(res.data);
-            }
-        });
-    }, [shopId, good]);
+        request.get(`rating/list/medicalshop/${id}`).then((res) => {
+            setComments(res.data)
+        })
+    }, [id]);
 
-    useEffect(() => {
-        for (let key in ratting) {
-            ratingAvg += ratting[key].numberOfStartOnMedicalShop / ratting.length;
-            Math.floor(ratingAvg);
+    const content = () => {
+        if (isProduct) {
+            return (
+                <div className={cx('menu-shop-detal')}>
+                    <h1>Products</h1>
+                    <div className={cx('inner-menu-shop')}>
+                        <div>
+                            {
+                                goods.map((item, index) => (
+                                    <div key={index}>
+                                        <ProductItem data={item} onClick={() => true} />
+                                    </div>))
+                            }
+                        </div>
+                    </div>
+                </div>
+            )
         }
-        switch (ratingAvg) {
-            case 1:
-                setStar1(true);
-                break;
-            case 2:
-                setStar1(true);
-                setStar2(true);
-                break;
-            case 3:
-                setStar1(true);
-                setStar2(true);
-                setStar3(true);
-                break;
-            case 4:
-                setStar1(true);
-                setStar2(true);
-                setStar3(true);
-                setStar4(true);
-                break;
-            case 5:
-                setStar1(true);
-                setStar2(true);
-                setStar3(true);
-                setStar4(true);
-                setStar5(true);
-                break;
+        else {
+            return (
+                <div className={cx('menu-shop-detal')}>
+                    <h1>Comments</h1>
+                    <div className={cx('inner-menu-shop')}>
+                        <div>
+                            {
+                                comments.map((item, index) => (
+                                    <div key={index} style={{ marginTop: '10px', padding: '10px' }} className={cx('comment')}>
+                                        <p>{item.commentOnMedicalShop}</p>
+                                        <Rate disabled defaultValue={item.numberOfStartOnMedicalShop} />
+                                    </div>))
+                            }
+                        </div>
+                    </div>
+                </div>
+            )
         }
-    }, [ratingAvg]);
+    }
+
 
     return (
         <div className={cx('wrapper')}>
             <div className={cx('detal-shop')}>
                 <div className={cx('inner-detal-shop')}>
                     <div className={cx('inner-left')}>
-                        <img src={shopById.medicalShopUrlImage} className={cx('shop-img')} />
+                        <Image
+                            className={cx('shop-img')}
+                            src={shopById.medicalShopUrlImage}
+                        />
                     </div>
                     <div className={cx('inner-right')}>
                         <div className={cx('kind-shop')}>{shopById.kindshop}</div>
                         <div className={cx('name-shop')}>{shopById.medicalShopName}</div>
                         <div className={cx('address-shop')}>{shopById.detailAddress}</div>
-                        <div className={cx('ratting')}>
-                            <span className={cx('star', star1 && 'checked')}>
-                                <FontAwesomeIcon icon={faStar} />
-                            </span>
-                            <span className={cx('star', star2 && 'checked')}>
-                                <FontAwesomeIcon icon={faStar} />
-                            </span>
-                            <span className={cx('star', star3 && 'checked')}>
-                                <FontAwesomeIcon icon={faStar} />
-                            </span>
-                            <span className={cx('star', star4 && 'checked')}>
-                                <FontAwesomeIcon icon={faStar} />
-                            </span>
-                            <span className={cx('star', star5 && 'checked')}>
-                                <FontAwesomeIcon icon={faStar} />
-                            </span>
-                        </div>
                         <div className={cx('booking')} onClick={handleOpen}>
                             Book an appointment
                         </div>
                         <div className={cx('utility-shop')}>
                             <div style={{ color: '#959595' }}>SERVICE BY</div>
-                            <div>DrugStore</div>
+                            <div>ODC19</div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div className={cx('menu-shop-detal')}>
-                <div className={cx('inner-menu-shop')}>
-                    <div className={cx('search')}>
-                        <span className={cx('search-icon')}>
-                            <FontAwesomeIcon icon={faMagnifyingGlass} />
-                        </span>
-                        <input className={cx('input-search')} placeholder="Tìm món" />
-                    </div>
-                    <div>
-                        {good.map((item, index) => (
-                            <div>
-                                <ProductItem data={item} key={index} onClick={() => true} />
-                            </div>
-                        ))}
+                    <div className={cx('actionGroup')}>
+                        <div className={cx('action')} onClick={() => setIsProduct(true)}>Products</div>
+                        <div className={cx('action')} onClick={() => setIsProduct(false)}>Comment</div>
                     </div>
                 </div>
             </div>
+
+            {content()}
             {isOpen && <BookingModal onOpen={setIsOpen} />}
         </div>
     );

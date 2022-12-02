@@ -1,4 +1,4 @@
-import { faMagnifyingGlass, faPlus, faStar } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faStar } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames/bind';
 import { useEffect, useState } from 'react';
@@ -21,9 +21,6 @@ function ListProducts() {
     const [star3, setStar3] = useState(false);
     const [star4, setStar4] = useState(false);
     const [star5, setStar5] = useState(false);
-
-    const nameUrl = window.location.href;
-    const shopId = nameUrl.replace('http://localhost:2806/medical-shop/', '');
 
     const handleOpen = () => {
         setIsOpen(true);
@@ -110,7 +107,7 @@ function ListProducts() {
                         </div>
                         <div className={cx('utility-shop')}>
                             <div style={{ color: '#959595' }}>SERVICE BY</div>
-                            <div>DrugStore</div>
+                            <div>ODC19</div>
                         </div>
                     </div>
                 </div>

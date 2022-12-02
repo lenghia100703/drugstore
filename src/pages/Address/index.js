@@ -1,7 +1,6 @@
 import classNames from 'classnames/bind';
 import { useEffect } from 'react';
 import request from '../../api/axios';
-import { userData } from '../Profile';
 
 import styles from './Address.module.scss';
 
@@ -14,7 +13,7 @@ function Address() {
         request.get(`user/${userData.userId}`).then((res) => {
             console.log(res.data);
         });
-    }, []);
+    }, [userData]);
     return (
         <div className={cx('wrapper')}>
             <div className={cx('header')}>

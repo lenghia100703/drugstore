@@ -59,7 +59,7 @@ function HistoryItem({ data, count }) {
                 </div>
             </div>
             <div className={cx('col-6', 'col')}>
-                <div>{totalCost}đ</div>
+                <div>{totalCost}$</div>
                 <div>{countOfItems} items</div>
             </div>
             <div className={cx('col-7', 'col')}>
